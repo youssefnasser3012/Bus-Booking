@@ -7,6 +7,7 @@ import { Form,Table } from 'react-bootstrap';
 import { FaRoute } from "react-icons/fa6";
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
+import { FcCalendar } from "react-icons/fc";
 const UpdateTickets=()=>{
     const [UpdatedDate, setUpdtatededDate] = useState('');
   const [UpdatedTime, setUpdtatededTime] = useState('');
@@ -95,7 +96,7 @@ const UpdateTickets=()=>{
                 <th><FaRoute size="1.4rem" /></th>
                 <th><PiMapPinLineDuotone size="1.4rem" />From</th>
                 <th><PiMapPinLineDuotone size="1.4rem" />To</th>
-                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><FcCalendar size="1.6rem" /> Date and Time</th>
                 <th><FcMoneyTransfer size="1.6rem" /> Ticket Price</th>
                 <th>Class</th>
                 <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Travelers</th>

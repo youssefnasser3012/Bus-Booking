@@ -47,7 +47,7 @@ return (
     <Link to="/traveldistination" style={{textDecoration:'none'}}><Nav.Item href="/traveldistination">Travel Distination</Nav.Item></Link>
     <Link to="/history" style={{textDecoration:'none'}}><Nav.Item href="/history">History</Nav.Item></Link>
     <Link to="/busstation" style={{textDecoration:'none'}}><Nav.Item href="/busstation">Bus Station</Nav.Item></Link>
-    <Link to="/ourclasses" style={{textDecoration:'none'}}><Nav.Item href="/ourclasses">Our Classes</Nav.Item></Link>
+   
     {(Admin && UserRole &&( UserRole.role === "Admin") )? <Link to="/manageusers" style={{textDecoration:'none'}}><Nav.Item href="/manageusers"> Manage Users</Nav.Item></Link>: null}
     </Nav>
  

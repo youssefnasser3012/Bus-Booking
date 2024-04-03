@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TicketNavigationBar from './TicketsNavbar';
 import { Card, Form } from 'react-bootstrap';
 import { FaLocationDot } from "react-icons/fa6";
-import { FcCalendar } from "react-icons/fc";
+
 import Alert from 'react-bootstrap/Alert';
 import { FcConferenceCall } from "react-icons/fc";
 import { IoTicket } from "react-icons/io5";
@@ -125,7 +125,6 @@ const Tickets = () => {
                                         </Form.Select>
                                     </div>
                                 </div>
-                                <div style={{ marginRight: '10px', marginTop: '50px' }}><FcCalendar style={{ marginBottom: '5px' }} size='2.5rem' /> <input style={{ display: 'inline-block', backgroundColor: " #DCDCDC", border: '2px solid #FF6347', borderRadius: '8px', padding: "5px", marginLeft: "11px" }} type="date" id="date" name="date" min="2024-01-01" max="2024-12-31" value={selectedDate} onChange={handleDateChange} /></div>
                                 <div style={{ marginTop: '30px' }}>
                                     <FcConferenceCall size="2.5rem" />
                                     <div style={{ display: 'inline-block', backgroundColor: " #F4A460", border: '2px solid #F4A460', borderRadius: '8px', padding: "1px", marginLeft: "20px" }}>

@@ -6,6 +6,11 @@ import NavigationBar from '../navbar/NAvigationBar';
 import { CarouselData } from './CarouselData';
 import { RoutesData } from './RoutesData';
 import { IoMdAddCircle } from "react-icons/io";
+import first from './photos/firstPrime-1.89bafabf.jpg'
+import business from './photos/bp.jpg'
+import comfort from './photos/business-1.542db289.jpeg'
+import economy  from './photos/first-3.491a648e.jpeg'
+
 
 const Home = () => {
     
@@ -51,7 +56,7 @@ return (
     <Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
     <Card.Body>
     <Card.Title>{Routes.Route}</Card.Title>
-<Link to="/tickets" style={{textDecoration:"none"}}><Card.Link  style={{color:'green',fontWeight:"bold"}} href="#">Book Ticket</Card.Link></Link>
+
 
     </Card.Body>
    
@@ -70,6 +75,77 @@ return (
 </Card>: null } 
 
 
+</div>
+<div className='row mb-5'>
+ <h3 className='text-center mb-4 pb-3'>Our Classes</h3>
+ <div class='row text-center justify-content-center row'>
+        
+        <Card style={{ width: '18rem',marginLeft:'5px',marginBottom:'40px' }}>
+    <Card.Img variant="top" src={first} />
+    <Card.Body>
+    <Card.Title>First Class</Card.Title>
+    <Card.Text>
+    <div >
+        <li>Single Seat</li>
+        <li>Individual Seat Screen</li>
+        <li>Air Conditioner</li>
+        <li>DvD</li>
+        <li>WC</li>
+        <li>USB charging</li>
+        <li>Wi Fi</li>
+        </div>
+    </Card.Text>
+    </Card.Body>
+</Card>
+        <Card style={{ width: '18rem',marginLeft:'5px',marginBottom:'40px' }}>
+    <Card.Img variant="top" src={business} />
+    <Card.Body>
+    <Card.Title>Business</Card.Title>
+    <Card.Text>
+    <div className='m-4'>
+        <li>Comfy wide Leather Seats</li>
+        <li>Individual Seat Screen</li>
+        <li>Air Conditioner</li>
+        <li>Snaks and Drinks</li>
+        <li>Direct Trips</li>
+        <li>WC</li>
+        <li>Wi Fi</li>
+        </div>
+    </Card.Text>
+    </Card.Body>
+</Card>
+        <Card style={{ width: '18rem',marginLeft:'5px',marginBottom:'40px' }}>
+    <Card.Img variant="top" src={economy} />
+    <Card.Body>
+    <Card.Title>Economy</Card.Title>
+    <Card.Text>
+    <div className='m-4'>
+        <li>Single Seat</li>
+    
+        <li>Air Conditioner</li>
+        <li>WC</li>
+       
+        <li>USB charging</li>
+        <li>Wi Fi</li>
+        </div>
+    </Card.Text>
+    </Card.Body>
+</Card>
+        <Card style={{ width: '18rem',marginLeft:'5px',marginBottom:'40px' }}>
+    <Card.Img variant="top" src={comfort} />
+    <Card.Body>
+    <Card.Title>Comfort</Card.Title>
+    <Card.Text>
+       <div className='m-4'>
+        <li>Air Conditioner</li>
+       
+        <li>USB charging</li>
+        <li>WC</li>
+        </div>
+    </Card.Text>
+    </Card.Body>
+</Card>
+</div>
 </div>
 
     </>

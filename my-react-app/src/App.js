@@ -10,13 +10,14 @@ import History from './component/History/History'
 import TravelDistination from './component/TravelDistination/TravelDistination'
 import BusStation from './component/BusStation/BusStation'
 import Tickets from './component/Tickets/Tickets'
-import OurClasses from './component/OurClasses/OurClasses'
+import RequestAppointments from './component/Request/RequestAppointments'
+
 import  Footer  from './component/Footercomponent/Footer';
 import Create from './component/CRUD/Create';
 import ShowTrips from './component/Trips/ShowTrips';
 import UpdateTickets from './component/CRUD/UpdateTickets';
 import ManageUsers from './component/ManageUsers/ManageUsers'
-import Request from './component/Request/Request';
+import Requestlist from './component/Request/Requestslist';
 
 
 function App() {
@@ -39,12 +40,12 @@ function App() {
         <Route path="/traveldistination" element={<TravelDistination/>} ></Route>
         <Route path="/history" element={<History/>} ></Route>
         <Route path="/busstation" element={<BusStation/>} ></Route>
-        <Route path="/ourclasses" element={<OurClasses/>} ></Route>
         <Route path="/addroutes" element={<Create/>} ></Route>
         <Route path="/showtrips" element={<ShowTrips/>} ></Route>
         <Route path="/updatetickets" element={<UpdateTickets/>} ></Route>
         <Route path="/manageusers" element={<ManageUsers/>} ></Route>
-        <Route path="/request" element={<Request/>} ></Route>
+        <Route path="/request" element={<Requestlist/>} ></Route>
+        <Route path="/request" element={<RequestAppointments/>} ></Route>
 
         
         
