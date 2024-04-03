@@ -8,6 +8,8 @@ import { FaRoute } from "react-icons/fa6";
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
 import { PiUserSquareDuotone } from "react-icons/pi";
+import './RA.css'
+import SideBar from '../SideBar/SideBar';
 
 
 const  RequestAppointments=()=>{
@@ -89,6 +91,8 @@ const  RequestAppointments=()=>{
     return(
     <>
 <NavigationBar/> 
+
+
 <div className="ubdate-routes p-5 ">
 <h3 className='text-center m-3 pb-5'> Request Appointments</h3>
 <div className="row justify-content-center pb-5">
@@ -127,8 +131,8 @@ const  RequestAppointments=()=>{
             
                 <td>
                 <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}> Accept </button>{' '}
-                    <button className='btn btn-sm btn-danger mx-auto row' onClick={handleDelete}>Decline</button>{'  '}
+                    <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}>Book Ticket</button>{' '}
+                    
                     </div>
                 </td>
             </tr>

@@ -105,7 +105,7 @@ const Tickets = () => {
                         <Card style={{ width: '30rem', height: '30rem', borderRadius: '15px', margin: "9rem", backgroundColor: '#F5F5F5' }}>
                             <Card.Body>
                                 <Card.Title style={{ fontWeight: 'bold', paddingBottom: '10px', marginBottom: '35px', boxShadow: ' 3px 3px 3px #D3D3D3', color: "#008080" }}><IoTicket size='1.8rem' /> Book Bus</Card.Title>
-                                <div className="d-flex flex-row align-items-center">
+                                <div className="d-flex flex-row align-items-center pt-3 pb-3">
                                     <div style={{ marginRight: '40px' }}>
                                         <Form.Label style={{ color: "#2F4F4F" }}><FaLocationDot /> From</Form.Label>
                                         <Form.Select style={{ backgroundColor: '#F4A460', borderRadius: "20px" }} value={fromCity} onChange={handleFromCityChange}>
@@ -125,7 +125,7 @@ const Tickets = () => {
                                         </Form.Select>
                                     </div>
                                 </div>
-                                <div style={{ marginTop: '30px' }}>
+                                <div style={{ marginTop: '30px' }} className='pt-4 pb-4'>
                                     <FcConferenceCall size="2.5rem" />
                                     <div style={{ display: 'inline-block', backgroundColor: " #F4A460", border: '2px solid #F4A460', borderRadius: '8px', padding: "1px", marginLeft: "20px" }}>
                                         <button style={{ borderRadius: '8px', backgroundColor: "#F4A460", color: "#fff", padding: "5px 10px", border: "none" }} onClick={decrement}>-</button>

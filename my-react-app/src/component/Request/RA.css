@@ -1,6 +1,7 @@
 .select-number {
-    width: 200px; /* Set desired width */
-    height: 40px; /* Set desired height */
-    font-size: 16px; /* Set desired font size */
+    width: 100px; 
+    height: 30px;
+    font-size: 16px; 
+    text-align: center;
   }
   
