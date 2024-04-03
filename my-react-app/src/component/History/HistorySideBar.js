@@ -38,7 +38,7 @@ const HistorySideBar=()=>{
     <Tabs  defaultActiveKey="profile" id="uncontrolled-tab-example" className="mb-3 bg-dark">
       <Tab  eventKey="home  " title="Pending Requests" >
       <div className="ubdate-routes p-5 ">
-<h3 className='text-center m-3 pb-5'> Request Appointments</h3>
+<h3 className='text-center m-3 pb-5'> Pending Appointments</h3>
 <div className="row justify-content-center pb-5">
     <Table striped bordered hover size="sm" responsive="md">
         <thead>
@@ -71,6 +71,7 @@ const HistorySideBar=()=>{
         {/* Add more options as needed */}
       </select></div></td>
               <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold",color:"red"}}>Pending</div></td>
              
             
                
@@ -87,7 +88,7 @@ const HistorySideBar=()=>{
       </Tab>
       <Tab eventKey="profile" title="Approved Requests">
       <div className="ubdate-routes p-5 ">
-<h3 className='text-center m-3 pb-5'> Request Appointments</h3>
+<h3 className='text-center m-3 pb-5'> Approved Appointments</h3>
 <div className="row justify-content-center pb-5">
     <Table striped bordered hover size="sm" responsive="md">
         <thead>
@@ -119,8 +120,8 @@ const HistorySideBar=()=>{
         <option value={5}>5</option>
         {/* Add more options as needed */}
       </select></div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-             
+              <td><div className='mt-4' style={{fontWeight:"bold", color:"Green"}}>Approved</div></td>
+              
             
               
             </tr>
