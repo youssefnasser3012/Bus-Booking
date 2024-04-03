@@ -21,6 +21,13 @@ const TravelStation=()=>{
 </Card.Body>
 </Card>
 ))}
+<Card className="p-0 m-5 " style={{ width: '18rem' }}>
+<Card.Img variant="top" style={{maxHeight:"190px"}} src={item.Image} />
+<Card.Body>
+<Card.Title></Card.Title>
+<Button variant="success">Book Ticket <FaArrowRight/></Button>
+</Card.Body>
+</Card>
 
 
 </div>
