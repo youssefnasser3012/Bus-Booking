@@ -10,15 +10,13 @@ import History from './component/History/History'
 import TravelDistination from './component/TravelDistination/TravelDistination'
 import BusStation from './component/BusStation/BusStation'
 import Tickets from './component/Tickets/Tickets'
-import RequestAppointments from './component/Request/RequestAppointments'
-
 import  Footer  from './component/Footercomponent/Footer';
 import Create from './component/CRUD/Create';
 import ShowTrips from './component/Trips/ShowTrips';
 import UpdateTickets from './component/CRUD/UpdateTickets';
 import ManageUsers from './component/ManageUsers/ManageUsers'
 import Requestlist from './component/Request/Requestslist';
-
+import RequestAppointments from './component/Request/RequestAppointments'
 
 function App() {
     
