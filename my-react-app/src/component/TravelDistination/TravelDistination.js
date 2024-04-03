@@ -24,8 +24,8 @@ const TravelStation=()=>{
 <Card className="p-0 m-5 " style={{ width: '18rem' }}>
 <Card.Img variant="top" style={{maxHeight:"190px"}}  />
 <Card.Body>
-<Link to="requestappointments"><Card.Title className='mt-3'>Now You can book tickets for the next month </Card.Title></Link>
-<Button className='mt-5' variant="success">See available tickets <FaArrowRight/></Button>
+<Card.Title className='mt-3'>Now You can book tickets for the next month </Card.Title>
+<Link to="requestappointments" ><Button className='mt-5' variant="success"  href="/requestappointments">See available tickets <FaArrowRight/></Button></Link>
 </Card.Body>
 </Card>
 

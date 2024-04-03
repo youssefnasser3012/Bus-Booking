@@ -45,7 +45,7 @@ function App() {
         <Route path="/updatetickets" element={<UpdateTickets/>} ></Route>
         <Route path="/manageusers" element={<ManageUsers/>} ></Route>
         <Route path="/request" element={<Requestlist/>} ></Route>
-        <Route path="/request" element={<RequestAppointments/>} ></Route>
+        <Route path="/requestappointments" element={<RequestAppointments/>} ></Route>
 
         
         
