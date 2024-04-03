@@ -1,0 +1,15 @@
+.card{
+
+padding-top: 20px;
+
+}
+.card li::marker{
+
+color:rgb(77, 160, 219) ;
+
+
+}
+.card-title{
+
+    color:rgb(98, 101, 101);
+}

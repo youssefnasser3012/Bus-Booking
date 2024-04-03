@@ -1,0 +1,15 @@
+.nav-item {
+text-decoration: none;
+padding: 8px;
+margin-right: 8px;
+font-size: large;
+    color: rgb(234, 228, 228);
+    
+}
+.nav-item:hover{
+    color: rgb(184, 185, 176);
+}
+.navbar-toggler {
+background-color: rgb(233, 229, 224)
+
+}

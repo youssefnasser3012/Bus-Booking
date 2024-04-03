@@ -1,0 +1,38 @@
+.table-sm>:not(caption)>*>* {
+    padding: 1rem;
+}
+.form-control {
+    display: flex;
+    width: 80%;
+   
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    background-color: var(--bs-body-bg);
+    
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.th{
+text-align: center;
+    padding: 20px;
+}
+.no-arrows {
+    /* Remove default arrow buttons on number inputs */
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  
+  .no-arrows::-webkit-inner-spin-button,
+  .no-arrows::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .table-sm>:not(caption)>*>* {
+    padding: 1rem;
+    text-align: center;
+}

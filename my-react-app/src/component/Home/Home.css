@@ -1,0 +1,12 @@
+.card-link{
+
+    text-decoration: none;
+}
+.Add_Routes{
+transition-duration: 0.3s;
+
+}
+.Add_Routes :hover{
+   transform: scale(1.1);
+    
+    }
