@@ -16,7 +16,7 @@ import ShowTrips from './component/Trips/ShowTrips';
 import UpdateTickets from './component/CRUD/UpdateTickets';
 import ManageUsers from './component/ManageUsers/ManageUsers'
 import Requestlist from './component/Request/Requestslist';
-import RequestAppointments from './component/Request/RequestAppointments'
+import RequestAppointments from './component/Request/RequestAppointments';
 
 function App() {
     
