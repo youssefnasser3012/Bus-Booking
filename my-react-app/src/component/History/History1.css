@@ -1,4 +1,14 @@
 .nav-tabs .nav-link {
 
-    color: black;
+    color: rgb(239, 229, 229);
+}
+
+.side-bar
+{
+
+    background-color:rgb(251, 251, 255);
+}
+
+.nav-tabs .nav-link {
+    color: #d4d4d4;
 }

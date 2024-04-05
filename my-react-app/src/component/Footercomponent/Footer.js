@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { FaBusAlt } from "react-icons/fa";
 const Footer = () => {
   return (
-<footer className="footer bg-dark">
+<footer className="footer bg-dark pb-5">
     <div className="container">
     <div className="row">
         <div className="col-lg-6 col-md-6 col-sm-12">

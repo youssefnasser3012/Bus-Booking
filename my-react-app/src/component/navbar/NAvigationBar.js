@@ -1,7 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-// import Container from 'react-bootstrap/Container';
-// import Nav from 'react-bootstrap/Nav';
-// import Navbar from 'react-bootstrap/Navbar';
 import {Navbar,Nav,Container,Button} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './navbar.css'

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { PiMapPinLineDuotone } from "react-icons/pi";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
@@ -8,55 +8,34 @@ import { FaRoute } from "react-icons/fa6";
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
 import { FcCalendar } from "react-icons/fc";
+
 const UpdateTickets=()=>{
-    const [UpdatedDate, setUpdtatededDate] = useState('');
-  const [UpdatedTime, setUpdtatededTime] = useState('');
-    const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
-   const [classes ,setClasses]=useState('');
-    const [ticketPrice, setTicketPrice] = useState('');
-    const [numoftravelers, setnumoftravelers] = useState('');
-    const [image, setImage] = useState('');
+   
+ const toRef =useRef('');
+const fromRef=useRef('');
+   const UpdatedDateRef =useRef(''); 
+   const UpdatedTimeRef=useRef('');
+   const TicketsPriceRef=useRef('');
+   const NumoftravelersRef=useRef('');
+   const classesRef =useRef('');
+ useEffect(()=>{
 
-    const handelClassChange =(e)=>{
-        setClasses(e.target.value)
+ console.log("render");
 
-    }
-    const handleFromChange = (e) => {
-        setFrom(e.target.value);
-    };
+ },fromRef)
 
-    const handleToChange = (e) => {
-        setTo(e.target.value);
-    };
-
-    const handleTicketPriceChange = (e) => {
-        setTicketPrice(e.target.value);
-    };
-
-    const handlenumberoftravelrs = (e) => {
-        setnumoftravelers(e.target.value);
-    };
-    const handleDateChange = (event) => {
-    setUpdtatededDate(event.target.value);
-    
-    };
-    
-    const handleTimeChange = (event) => {
-        setUpdtatededTime(event.target.value);
-        
-    };
+   
     const handleAdd = () => {
         // Construct the object with the form data
         const TicketsData = {
         
-            'updated-tickets-from': from,
-            'updated-tickets-to': to,
-            'updated-ticketPrice': ticketPrice,
-            'updated-tickets-image': image,
-            'updated-tickets-date':UpdatedDate,
-            'updated-tickets-time':UpdatedTime,
-            'updated-tickets-classes':classes,
+           'updated-tickets-from':fromRef.current.value,
+            'updated-tickets-to': toRef.current.value,
+            'updated-ticketPrice': TicketsPriceRef.current.value,
+            'updated-numoftravelers':NumoftravelersRef.current.value,
+            'updated-tickets-date':UpdatedDateRef.current.value,
+            'updated-tickets-time':UpdatedTimeRef.current.value,
+            'updated-tickets-classes':classesRef.current.value,
         };
         // Store the form data in local storage
         localStorage.setItem('ticketsdata', JSON.stringify(TicketsData));
@@ -73,15 +52,15 @@ const UpdateTickets=()=>{
     };
 
     const clearForm = () => {
-    
-        setFrom('');
-        setTo('');
-        setImage('')
-        setUpdtatededTime('')
-        setUpdtatededDate('')
-        setTicketPrice('');
-        setImage('');
-        setClasses('')
+    fromRef.current.value='';
+    toRef.current.value='';
+    TicketsPriceRef.current.value='';
+    NumoftravelersRef.current.value='';
+    UpdatedDateRef.current.value='';
+    UpdatedTimeRef.current.value='';
+    classesRef.current.value='';
+       
+        
     };
 
     return(
@@ -106,21 +85,21 @@ const UpdateTickets=()=>{
         <tbody>
             <tr>
                 <td><div className=' mt-5'>1</div></td>
-                <td><input type="text" value={from} onChange={handleFromChange} placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>
-                <td><input type="text" value={to} onChange={handleToChange} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin  mt-5" /></td>
+                <td><input type="text" ref={(ref)=>fromRef.current=ref}  placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>
+                <td><input type="text" ref={(ref)=>toRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin  mt-5" /></td>
                 <td>   
                 <div>
 
                 <label>Date:</label>{' '}
-               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}}type="date" value={UpdatedDate} onChange={handleDateChange}/> </div>
+               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}}type="date" ref={(ref)=>UpdatedDateRef.current=ref}/> </div>
               <label>Time:</label>
-               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}} type="time" value={UpdatedTime} onChange={handleTimeChange}/></div>
+               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}} type="time"  ref={(ref)=>UpdatedTimeRef.current=ref}/></div>
               </div>
               </td>
-                <td><input  type="number" value={ticketPrice} onChange={handleTicketPriceChange} className="no-arrows form-control-sm no-padding no-margin mt-5" /></td>
+                <td><input  type="number" ref={(ref)=>TicketsPriceRef.current=ref} className="no-arrows form-control-sm no-padding no-margin mt-5" /></td>
                 <td> <div>
                 
-                <Form.Select className=' mt-5' style={{  borderRadius: "20px" }} value={classes} onChange={handelClassChange}>
+                <Form.Select className=' mt-5' style={{  borderRadius: "20px" }} ref={(ref)=>classesRef.current=ref}>
                     <option>Select City</option>
                     <option value="First Class">First Class</option>
                     <option value="Business Class">Business Class</option>
@@ -128,7 +107,7 @@ const UpdateTickets=()=>{
                     <option value="Comfort class">Comfort Class</option>
                 </Form.Select>
             </div></td>
-            <td><input type="number" value={numoftravelers} placeholder='Enter Num Of Travelers' onChange={handlenumberoftravelrs} className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
+            <td><input type="number" ref={(ref)=>NumoftravelersRef.current=ref} placeholder='Enter Num Of Travelers' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
                 <td>
                 <div className='row  mt-3'>
                     <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}> Add </button>{' '}

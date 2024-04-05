@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import NavigationBar from '../navbar/NAvigationBar'
 import './Create.css';
 import { Table } from 'react-bootstrap';
@@ -8,32 +8,20 @@ import { PiMapPinLineDuotone } from "react-icons/pi";
 import { FcEditImage } from "react-icons/fc";
 
 const Create = () => {
-    const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
-    const [image, setImage] = useState('');
+    const fromRef = useRef('');
+    const toRef = useRef('');
+    
 
-    const handleFromChange = (e) => {
-        setFrom(e.target.value);
-    };
-
-    const handleToChange = (e) => {
-        setTo(e.target.value);
-    };
-
-
-
-    const handleImageChange = (e) => {
-        setImage(e.target.files[0]);
-    };
+   
 
     const handleAdd = () => {
         // Construct the object with the form data
         const routesData = {
         
-            'updated-routes-from': from,
-            'updated-routes-to': to,
+            'updated-routes-from': fromRef.current.value,
+            'updated-routes-to': toRef.current.value,
             
-            'updated-routes-image': image,
+           
             
         };
         // Store the form data in local storage
@@ -52,14 +40,15 @@ const Create = () => {
 
     const clearForm = () => {
       
-        setFrom('');
-        setTo('');
-        setImage('');
+        fromRef.current.value='';
+        toRef.current.value='';
+        
     };
 
     return (
         <>
             <NavigationBar />
+            <div className='pb-4'>
             <div className="ubdate-routes p-5 ">
                 <h3 className='text-center m-3 pb-5'>Update Routes</h3>
                 <div className="row justify-content-center pb-5">
@@ -76,9 +65,9 @@ const Create = () => {
                         <tbody>
                             <tr>
                                 <td>1</td>
-                                <td><input type="text" value={from} onChange={handleFromChange} placeholder="Enter City" className="form-control form-control-sm no-margin" /></td>
-                                <td><input type="text" value={to} onChange={handleToChange} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin" /></td>
-                                <td><input type="file" accept="image/*" onChange={handleImageChange} /></td>
+                                <td><input type="text" ref={(ref)=>fromRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-margin" /></td>
+                                <td><input type="text" ref={(ref)=>toRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin" /></td>
+                                <td><input type="file" accept="image/*" /></td>
                                 <td>
                                     <button className='btn btn-sm btn-success mx-auto' onClick={handleAdd}> Add </button>{' '}
                                     <button className='btn btn-sm btn-danger mx-auto' onClick={handleDelete}>Delete</button>{'  '}
@@ -87,6 +76,7 @@ const Create = () => {
                         </tbody>
                     </Table>
                 </div>
+            </div>
             </div>
         </>
     );

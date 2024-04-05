@@ -20,20 +20,18 @@ const Home = () => {
   
     const issignIn  = signin !== null;
 
-    // const signup = JSON.parse(localStorage.getItem('signup'));
-  
-    // const issignup = signup !== null;
+
 
     const Admin = (issignIn)  && (signin.email ===UserRole.email ) && (signin.password ===UserRole.password)  ? true:false;
    
 
 
-    // Clear the form fields after deletion
+   
    
 
 return (
 <>
-{/* <div className='bg-dark'> */}
+
 <NavigationBar/>
 <Carousel style={{marginTop:'20px', marginBottom:'100px'}} responsive className=' w-50 container '>
 {CarouselData.map((item)=>(

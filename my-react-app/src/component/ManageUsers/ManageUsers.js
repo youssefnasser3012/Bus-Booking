@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Table,Form } from 'react-bootstrap';
 import Navbar from  '../Account/navbar';
 
@@ -8,39 +8,23 @@ const ManageUsers = () => {
 
     // Function to handle the change in user type
     
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState(''); 
+    const email = useRef('');
+    const username = useRef('');
+    const password = useRef('');
+    const role = useRef(''); 
 
 
 
-    const handleUserName = (e) => {
-        setUsername(e.target.value);
-    };
-
-
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleRoleChange = (e) => {
-        setRole(e.target.value);
-    };
-
+    
     const handleAdd = () => {
         // Retrieve existing users from local storage
         
         // Construct the object with the form data
         const newUser = {
-            'password': password,
-            'email': email,
-            'username': username,
-            'role': role // Add role to the sign-up data
+            'password': password.current.value,
+            'email': email.current.value,
+            'username': username.current.value,
+            'role': role.current.value // Add role to the sign-up data
         };
 
         // Add the new user to the existing users array
@@ -57,10 +41,10 @@ const ManageUsers = () => {
         clearForm();
     };
     const clearForm = () => {
-        setUsername('')
-        setEmail('');
-        setPassword('');
-        setRole('');
+       password.current.value=''
+        email.current.value='';
+        username.current.value='';
+        role.current.value='';
     };
 
     return (
@@ -82,14 +66,14 @@ const ManageUsers = () => {
                     <tbody>
                         <tr>
                            
-                            <td><input type="text"  placeholder="Enter UserName" className="form-control form-control-sm no-margin" value={username} onChange={ handleUserName} /> </td>
-                            <td><input type="email"  placeholder="Enter Email" className="form-control form-control-sm no-margin" value={email} onChange={ handleEmail} /></td>
-                            <td><input type="password" placeholder="Enter Password" className="form-control form-control-sm no-padding no-margin" value={password} onChange={handlePassword}/></td>
+                            <td><input type="text"  placeholder="Enter UserName" className="form-control form-control-sm no-margin" ref={(ref)=>username.current=ref} /> </td>
+                            <td><input type="email"  placeholder="Enter Email" className="form-control form-control-sm no-margin" ref={(ref)=>email.current=ref} /></td>
+                            <td><input type="password" placeholder="Enter Password" className="form-control form-control-sm no-padding no-margin" ref={(ref)=>password.current=ref}/></td>
                             <td>   
                            
                             <td> <div>
                             
-                            <Form.Select style={{  borderRadius: "20px" }}  value={role} onChange={handleRoleChange} >
+                            <Form.Select style={{  borderRadius: "20px" }} ref={(ref)=>role.current=ref} >
                                 <option>Select City</option>
                                 <option value="Admin">Admin</option>
                                 <option value="Traveler">Traveler</option>

@@ -1,92 +1,15 @@
 import React, { useState } from 'react';
 import { PiMapPinLineDuotone } from "react-icons/pi";
-import { FcMoneyTransfer } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
-import { FcEditImage } from "react-icons/fc";
-import { Form,Table } from 'react-bootstrap';
-import { FaRoute } from "react-icons/fa6";
+import {Table } from 'react-bootstrap';
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
-import { PiUserSquareDuotone } from "react-icons/pi";
 import './RA.css'
-import SideBar from '../SideBar/SideBar';
+
 
 
 const  RequestAppointments=()=>{
-    const [UpdatedDate, setUpdtatededDate] = useState('');
-  const [UpdatedTime, setUpdtatededTime] = useState('');
-    const [from, setFrom] = useState('');
-    const [to, setTo] = useState('');
-   const [classes ,setClasses]=useState('');
-    const [ticketPrice, setTicketPrice] = useState('');
-    const [numoftravelers, setnumoftravelers] = useState('');
-    const [image, setImage] = useState('');
-
-    const handelClassChange =(e)=>{
-        setClasses(e.target.value)
-
-    }
-    const handleFromChange = (e) => {
-        setFrom(e.target.value);
-    };
-
-    const handleToChange = (e) => {
-        setTo(e.target.value);
-    };
-
-    const handleTicketPriceChange = (e) => {
-        setTicketPrice(e.target.value);
-    };
-
-    const handlenumberoftravelrs = (e) => {
-        setnumoftravelers(e.target.value);
-    };
-    const handleDateChange = (event) => {
-    setUpdtatededDate(event.target.value);
     
-    };
-    
-    const handleTimeChange = (event) => {
-        setUpdtatededTime(event.target.value);
-        
-    };
-    const handleAdd = () => {
-        // Construct the object with the form data
-        const TicketsData = {
-        
-            'updated-tickets-from': from,
-            'updated-tickets-to': to,
-            'updated-ticketPrice': ticketPrice,
-            'updated-tickets-image': image,
-            'updated-tickets-date':UpdatedDate,
-            'updated-tickets-time':UpdatedTime,
-            'updated-tickets-classes':classes,
-        };
-        // Store the form data in local storage
-        localStorage.setItem('ticketsdata', JSON.stringify(TicketsData));
-
-        // Clear the form fields after saving
-        clearForm();
-    };
-
-    const handleDelete = () => {
-        // Clear the form data from local storage
-        localStorage.removeItem('ticketsdata');
-        // Clear the form fields after deletion
-        clearForm();
-    };
-
-    const clearForm = () => {
-    
-        setFrom('');
-        setTo('');
-        setImage('')
-        setUpdtatededTime('')
-        setUpdtatededDate('')
-        setTicketPrice('');
-        setImage('');
-        setClasses('')
-    };
 
     return(
     <>
@@ -131,7 +54,7 @@ const  RequestAppointments=()=>{
             
                 <td>
                 <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}>Book Ticket</button>{' '}
+                    <button className='btn btn-sm btn-success mx-auto row m-2'>Book Ticket</button>{' '}
                     
                     </div>
                 </td>
