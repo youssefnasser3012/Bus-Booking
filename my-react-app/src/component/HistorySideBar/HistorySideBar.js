@@ -2,6 +2,10 @@ import React from 'react';
 import NavigationBar from '../navbar/NAvigationBar';
 
 const HistorySideBar=()=>{
+
+
+
+
     return(
         <>
 <div className='side-bar col-3 ' bg='light' style={{ height:"50rem", width:"16%",boxShadow:"0px 0px 1px 0px #9d9f9e"}}>
@@ -10,7 +14,7 @@ const HistorySideBar=()=>{
 </div>
 <div style={{paddingLeft:"1rem"}}>
 <div>
-<input type='checkbox' /> PM
+<input type='checkbox'  onSelect={handelPMselect}/> PM
 </div>
 <div>
 <input type='checkbox' /> AM
