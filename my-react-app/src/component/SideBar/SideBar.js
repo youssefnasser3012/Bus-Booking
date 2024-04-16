@@ -41,7 +41,6 @@ const SideBar=()=>{
 {TicketsData ? <div className='row'>
     <Card.Body className='col-3'><p style={{fontWeight:"bold",color:"#1e2320"}}> From </p><p  style={{paddingTop:'5px',color:"#008b02",fontSize:"1.09rem"}}> {localStorage.getItem("fromCity")}</p></Card.Body>
     <Card.Body className='col-3'><p style={{fontWeight:"bold",color:"#1e2320"}}>To </p><p  style={{paddingTop:'5px',color:"#008b02",fontSize:"1.09rem"}}> {localStorage.getItem("toCity")}</p></Card.Body>
-    <Card.Body className='col-3'><p  style={{fontWeight:"bold",color:"#1e2320"}}>Date </p><p  style={{paddingTop:'5px',color:"#008b02",fontSize:"1.09rem"}}> {localStorage.getItem("selectedDate")}</p></Card.Body>
     <Card.Body className='col-3'><p style={{fontWeight:"bold",color:"#1e2320"}}>Numbers Of Tickets </p><p style={{paddingTop:'5px',paddingLeft:'4rem',color:"#008b02",fontSize:"1.09rem"}}> {localStorage.getItem("numoftickets")}</p></Card.Body>
     </div>:<Card className ="card-style col-11" border='light' style={{  padding:"5%",color: "black" , width: "70%",backgroundColor:"#f6f6f9" }}><Card.Title > Please complete your Data </Card.Title></Card> }
     
@@ -113,11 +112,12 @@ const SideBar=()=>{
     <Card.Body className='col-3'><p  style={{ color: "#008b02", fontWeight: "bold",paddingTop:"20px"}}>{TicketsData["updated-tickets-classes"]}</p></Card.Body>
    {book ?<Card.Body className='col-3'> <button onClick={handelremove} className='btn btn-sm btn-danger ' style={{ padding: "20px 20px", fontSize: "0.8rem",borderRadius:"20px" }}>Remove Ticket</button></Card.Body>: 
    <Card.Body className='col-3'> <button onClick={handelBook} className='btn btn-sm btn-warning ' style={{ padding: "20px 20px", fontSize: "0.8rem",borderRadius:"20px" }}>Book Ticket</button></Card.Body> }
-   <div style={{color:"red"}}>Available {TicketsData["updated-numberoftravelrs"]} seats</div>
+   <div style={{color:"red"}}>Available {TicketsData["updated-numoftickets"]} seats</div>
 
     </div> 
   </Card.Body>
-</Card>:<Card  style={{ border:"none",width:"50%",marginTop:"20%",marginLeft:"30%",backgroundColor:"#f6f6f9" }}><Card.Body style={{fontWeight:"bold"}}>there is no tickets available, Back to complete your data</Card.Body> </Card>}
+</Card>
+:<Card  style={{ border:"none",width:"50%",marginTop:"20%",marginLeft:"30%",backgroundColor:"#f6f6f9" }}><Card.Body style={{fontWeight:"bold"}}>there is no tickets available, Back to complete your data</Card.Body> </Card>}
 </div>
 
 

@@ -17,6 +17,7 @@ const fromRef=useRef('');
    const UpdatedTimeRef=useRef('');
    const TicketsPriceRef=useRef('');
    const NumoftravelersRef=useRef('');
+   const Numoftickets=useRef('');
    const classesRef =useRef('');
  useEffect(()=>{
 
@@ -32,7 +33,8 @@ const fromRef=useRef('');
            'updated-tickets-from':fromRef.current.value,
             'updated-tickets-to': toRef.current.value,
             'updated-ticketPrice': TicketsPriceRef.current.value,
-            'updated-numoftravelers':NumoftravelersRef.current.value,
+
+            'updated-numoftickets':NumofticketsRef.current.value,
             'updated-tickets-date':UpdatedDateRef.current.value,
             'updated-tickets-time':UpdatedTimeRef.current.value,
             'updated-tickets-classes':classesRef.current.value,
@@ -55,10 +57,11 @@ const fromRef=useRef('');
     fromRef.current.value='';
     toRef.current.value='';
     TicketsPriceRef.current.value='';
-    NumoftravelersRef.current.value='';
+   
     UpdatedDateRef.current.value='';
     UpdatedTimeRef.current.value='';
     classesRef.current.value='';
+    NumofticketsRef.current.value='';
        
         
     };
@@ -78,7 +81,8 @@ const fromRef=useRef('');
                 <th><FcCalendar size="1.6rem" /> Date and Time</th>
                 <th><FcMoneyTransfer size="1.6rem" /> Ticket Price</th>
                 <th>Class</th>
-                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Travelers</th>
+               
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
                 <th>Event</th>
             </tr>
         </thead>
@@ -107,7 +111,8 @@ const fromRef=useRef('');
                     <option value="Comfort class">Comfort Class</option>
                 </Form.Select>
             </div></td>
-            <td><input type="number" ref={(ref)=>NumoftravelersRef.current=ref} placeholder='Enter Num Of Travelers' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
+           
+            <td><input type="number" ref={(ref)=>NumofticketsRef.current=ref} placeholder='Enter Num Of Tickets' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
                 <td>
                 <div className='row  mt-3'>
                     <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}> Add </button>{' '}
