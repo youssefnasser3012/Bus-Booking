@@ -34,7 +34,7 @@ const fromRef=useRef('');
             'updated-tickets-to': toRef.current.value,
             'updated-ticketPrice': TicketsPriceRef.current.value,
 
-            'updated-numoftickets':NumofticketsRef.current.value,
+            'updated-numoftickets':Numoftickets.current.value,
             'updated-tickets-date':UpdatedDateRef.current.value,
             'updated-tickets-time':UpdatedTimeRef.current.value,
             'updated-tickets-classes':classesRef.current.value,
@@ -61,7 +61,7 @@ const fromRef=useRef('');
     UpdatedDateRef.current.value='';
     UpdatedTimeRef.current.value='';
     classesRef.current.value='';
-    NumofticketsRef.current.value='';
+    Numoftickets.current.value='';
        
         
     };
@@ -112,7 +112,7 @@ const fromRef=useRef('');
                 </Form.Select>
             </div></td>
            
-            <td><input type="number" ref={(ref)=>NumofticketsRef.current=ref} placeholder='Enter Num Of Tickets' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
+            <td><input type="number" ref={(ref)=>Numoftickets.current=ref} placeholder='Enter Num Of Tickets' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
                 <td>
                 <div className='row  mt-3'>
                     <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}> Add </button>{' '}
