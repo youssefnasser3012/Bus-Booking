@@ -1,117 +1,115 @@
-import React ,{useState}from 'react';
-import   './Signin.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import './Signin.css';
 import './navbar.css';
-import Navbar from './navbar'
-const SignUp=()=>{
-    const [email,setemail]=useState('')
-    const [username,setusername]=useState('')
-    const [phonenumber,setphonenumber]=useState('')
-    const [password,setPassword]=useState('')
-   
-   
+import Navbar from './navbar';
 
-    const handelUserName =(e)=>{
- setusername(e.target.value);
- 
+const SignUp = () => {
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleUserName = (e) => {
+        setUsername(e.target.value);
     };
-    const handelPhoneNumber =(e)=>{
- setphonenumber(e.target.value);
- 
+
+    const handlePhoneNumber = (e) => {
+        setPhoneNumber(e.target.value);
     };
-   
-    const handelSignUpemail =(e)=>{
- setemail(e.target.value);
- 
+
+    const handleSignUpEmail = (e) => {
+        setEmail(e.target.value);
     };
-    
-    const handelSignUpPassword =(e)=>{
- setPassword(e.target.value);
- 
+
+    const handleSignUpPassword = (e) => {
+        setPassword(e.target.value);
     };
-   
-    const handleConfirm = () => {
-        // Construct the object with the form data
-        const SignupData = {
-        'passwordsignup':password,
-        'emailsignup':email,
-        'phonenumbersignup':phonenumber,
-        'usernamesignup':username,
-      
-       
-           
-        };
-        // Store the form data in local storage
-        localStorage.setItem('signup', JSON.stringify(SignupData));
-    
-        
-      
+
+    const handleSignUp = async (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+
+        try {
+            // Make a POST request to the backend API endpoint
+            const response = await axios.post('http://your-backend-url/api/auth/signup', {
+                username: username,
+                email: email,
+                phoneNumber: phoneNumber,
+                password: password
+            });
+
+            // Handle the response here if needed
+            console.log('Sign-up successful:', response.data);
+
+            // Optionally, you can redirect the user to another page
+            // after successful sign-up
+            // history.push('/login');
+        } catch (error) {
+            console.error('Error signing up:', error);
+        }
     };
-    return(
-        
+
+    return (
         <>
-    <Navbar />
-    <div className="Auth-form-container">
-    <form className="Auth-form">
-   
-      <div className="Auth-form-content">
-        <h3 className="Auth-form-title">Sign Up</h3>
-        
-        <div className="form-group mt-3">
-          <label>User Name</label>
-          <input
-          onChange={handelUserName}
-            type="text"
-            className="form-control mt-1"
-            placeholder="Enter your name"/>
-        </div>
-        <div className="form-group mt-3">
-          <label>Phone Number</label>
-          <input
-          onChange={handelPhoneNumber}
-            type="number"
-            className="form-control mt-1"
-            placeholder="Enter number"/>
-        </div>
-        <div className="form-group mt-3">
-          <label>Email address</label>
-          <input
-          onChange={handelSignUpemail}
-            type="email"
-            className="form-control mt-1"
-            placeholder="Enter email"/>
-        </div>
-        <div className="form-group mt-3">
-          <label>Password</label>
-          <input
-          onChange={handelSignUpPassword}
-            type="password"
-            className="form-control mt-1"
-            placeholder="Enter password"
-          />
-        </div>
-        <div className="form-group mt-3">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            className="form-control mt-1"
-            placeholder="Retype password"
-          />
-        </div>
-        <div className="d-grid gap-2 mt-3">
-          <button  onClick={handleConfirm} type="submit" className="btn btn-primary">
-            Confirm
-          </button>
-        </div>
+            <Navbar />
+            <div className="Auth-form-container">
+                <form className="Auth-form" onSubmit={handleSignUp}>
+                    <div className="Auth-form-content">
+                        <h3 className="Auth-form-title">Sign Up</h3>
+                        <div className="form-group mt-3">
+                            <label>User Name</label>
+                            <input
+                                onChange={handleUserName}
+                                type="text"
+                                className="form-control mt-1"
+                                placeholder="Enter your name"
+                            />
+                        </div>
+                        <div className="form-group mt-3">
+                            <label>Phone Number</label>
+                            <input
+                                onChange={handlePhoneNumber}
+                                type="number"
+                                className="form-control mt-1"
+                                placeholder="Enter number"
+                            />
+                        </div>
+                        <div className="form-group mt-3">
+                            <label>Email address</label>
+                            <input
+                                onChange={handleSignUpEmail}
+                                type="email"
+                                className="form-control mt-1"
+                                placeholder="Enter email"
+                            />
+                        </div>
+                        <div className="form-group mt-3">
+                            <label>Password</label>
+                            <input
+                                onChange={handleSignUpPassword}
+                                type="password"
+                                className="form-control mt-1"
+                                placeholder="Enter password"
+                            />
+                        </div>
+                        <div className="form-group mt-3">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                className="form-control mt-1"
+                                placeholder="Retype password"
+                            />
+                        </div>
+                        <div className="d-grid gap-2 mt-3">
+                            <button type="submit" className="btn btn-primary">
+                                Confirm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </>
+    );
+};
 
-      </div>
-    </form>
-  </div>
-    </>
-)
-
-    
-    
-    
-    
-    };
-    export default SignUp;
+export default SignUp;
