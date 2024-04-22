@@ -17,11 +17,7 @@ return (
          <Nav className="nav_links ms-auto pl-3">
       
       <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
-      <Link to="/updatetickets"  style={{textDecoration:'none'}}><Nav.Item href="/updatetickets">Update Tickets</Nav.Item></Link> 
-    
-       <Link to="/request" style={{textDecoration:'none'}}><Nav.Item href="/request">Requests</Nav.Item></Link>
-  
-   <Link to="/manageusers" style={{textDecoration:'none'}}><Nav.Item href="/manageusers"> Manage Users</Nav.Item></Link>
+      
       </Nav>
     
     
