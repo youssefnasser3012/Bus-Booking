@@ -4,6 +4,7 @@ import { FcClock } from "react-icons/fc";
 import {Table } from 'react-bootstrap';
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
+import { FcMoneyTransfer } from "react-icons/fc";
 import './RA.css'
 
 
@@ -28,7 +29,7 @@ const  RequestAppointments=()=>{
                 <th><PiMapPinLineDuotone size="1.4rem" />To</th>
                 <th><FcClock size="1.6rem" /> Date and Time</th>
                 <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
-                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th><FcMoneyTransfer size="1.6rem" /> Price</th>
                 <th>Event</th>
             </tr>
         </thead>
@@ -37,9 +38,12 @@ const  RequestAppointments=()=>{
                
 
              
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>cairo</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>luxor</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>
+              <div>30 march </div>
+              <div>18:40</div>
+              </div></td>
               <td><div className='mt-4' style={{fontWeight:"bold" }}><select id="number"  className="select-number" >
        
         <option value={1}>1</option>
@@ -49,12 +53,12 @@ const  RequestAppointments=()=>{
         <option value={5}>5</option>
         {/* Add more options as needed */}
       </select></div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>100LE</div></td>
              
             
                 <td>
                 <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2'>Book Ticket</button>{' '}
+                    <button className='btn btn-sm btn-success mx-auto row m-2'>Request Ticket</button>{' '}
                     
                     </div>
                 </td>

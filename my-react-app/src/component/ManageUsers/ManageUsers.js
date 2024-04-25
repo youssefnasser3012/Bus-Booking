@@ -11,7 +11,7 @@ const ManageUsers = () => {
     const email = useRef('');
     const username = useRef('');
     const password = useRef('');
-    const role = useRef(''); 
+   
 
 
 
@@ -24,7 +24,7 @@ const ManageUsers = () => {
             'password': password.current.value,
             'email': email.current.value,
             'username': username.current.value,
-            'role': role.current.value // Add role to the sign-up data
+           
         };
 
         // Add the new user to the existing users array
@@ -44,7 +44,7 @@ const ManageUsers = () => {
        password.current.value=''
         email.current.value='';
         username.current.value='';
-        role.current.value='';
+       
     };
 
     return (
@@ -59,7 +59,6 @@ const ManageUsers = () => {
                             <th>User Name</th>
                             <th>Email</th>
                             <th>password</th>
-                            <th>Role</th>
                             <th>Event</th>
                         </tr>
                     </thead>
@@ -69,19 +68,7 @@ const ManageUsers = () => {
                             <td><input type="text"  placeholder="Enter UserName" className="form-control form-control-sm no-margin" ref={(ref)=>username.current=ref} /> </td>
                             <td><input type="email"  placeholder="Enter Email" className="form-control form-control-sm no-margin" ref={(ref)=>email.current=ref} /></td>
                             <td><input type="password" placeholder="Enter Password" className="form-control form-control-sm no-padding no-margin" ref={(ref)=>password.current=ref}/></td>
-                            <td>   
-                           
-                            <td> <div>
                             
-                            <Form.Select style={{  borderRadius: "20px" }} ref={(ref)=>role.current=ref} >
-                                <option>Select City</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Traveler">Traveler</option>
-                            </Form.Select>
-                        </div></td>
-                            
-                        
-                        </td>
                         <td>
                         <div className='row'>
                             <button className='btn btn-sm btn-success mx-auto row m-2 ' style={{margin:"30px"}} onClick={handleAdd} > Add </button>{' '}

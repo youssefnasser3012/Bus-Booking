@@ -35,16 +35,23 @@ const Request=()=>{
                
 
               <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>cairo</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>luxor</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>
+              <div>20 march</div>
+              <div>18:33</div>
+              
+              </div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>120</div></td>
              
             
                 <td>
                 <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2' > Accept </button>{' '}
-                    <button className='btn btn-sm btn-danger mx-auto row' >Decline</button>{'  '}
+              <div style={{width:"100%"}}>
+                    <button className='btn btn-sm btn-success mx-auto row m-2' style={{width:"60%"}}> Accept </button>{' '}<br/>
+                   
+                    <button className='btn btn-sm btn-danger mx-auto row' style={{width:"60%"}} >Decline</button>{'  '}
+                    </div>
                     </div>
                 </td>
             </tr>
