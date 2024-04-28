@@ -25,85 +25,79 @@ const SignUp = () => {
     const handleSignUpPassword = (e) => {
         setPassword(e.target.value);
     };
-
+    
     const handleSignUp = async (e) => {
         e.preventDefault(); // Prevent the default form submission behavior
+        
+    
 
         try {
             // Make a POST request to the backend API endpoint
-            const response = await axios.post('http://your-backend-url/api/auth/signup', {
-                username: username,
-                email: email,
-                phoneNumber: phoneNumber,
-                password: password
+            const response = await axios.post('http://localhost:5270/api/auth/register', {
+                Username: username,
+                Email: email,
+                Password: password,
+                phoneNumber:phoneNumber
             });
 
             // Handle the response here if needed
-            console.log('Sign-up successful:', response.data);
+            console.log('Sign-up successful:');
+            
 
             // Optionally, you can redirect the user to another page
             // after successful sign-up
             // history.push('/login');
         } catch (error) {
-            console.error('Error signing up:', error);
+            console.error('Error signing up:', error.response.data);
         }
+        
     };
 
     return (
         <>
             <Navbar />
             <div className="Auth-form-container">
-                <form className="Auth-form" onSubmit={handleSignUp}>
+                <form className="Auth-form">
                     <div className="Auth-form-content">
                         <h3 className="Auth-form-title">Sign Up</h3>
                         <div className="form-group mt-3">
                             <label>User Name</label>
-                            <input
-                                onChange={handleUserName}
-                                type="text"
-                                className="form-control mt-1"
-                                placeholder="Enter your name"
-                            />
+                            <div style={{width:"110%"}}>
+                            <input onChange={handleUserName} type="text" className="form-control mt-1" placeholder="Enter your name"/>
+                            </div>
                         </div>
+                        
                         <div className="form-group mt-3">
-                            <label>Phone Number</label>
-                            <input
-                                onChange={handlePhoneNumber}
-                                type="number"
-                                className="form-control mt-1"
-                                placeholder="Enter number"
-                            />
+                        <label>Phone Number</label>
+                        <div style={{width:"110%"}}>
+                        <input onChange={handlePhoneNumber} type="number" className="form-control mt-1" placeholder="Enter number"/>
+                        </div>
                         </div>
                         <div className="form-group mt-3">
                             <label>Email address</label>
-                            <input
-                                onChange={handleSignUpEmail}
-                                type="email"
-                                className="form-control mt-1"
-                                placeholder="Enter email"
-                            />
+                            <div style={{width:"110%"}}>
+                            <input onChange={handleSignUpEmail} type="email" className="form-control mt-1"  placeholder="Enter email" />
+                            </div>
                         </div>
+
                         <div className="form-group mt-3">
                             <label>Password</label>
-                            <input
-                                onChange={handleSignUpPassword}
-                                type="password"
-                                className="form-control mt-1"
-                                placeholder="Enter password"
-                            />
+                            <div style={{width:"110%"}}>
+                            <input  onChange={handleSignUpPassword}  type="password" className="form-control mt-1" placeholder="Enter password"/>
+                            </div>
                         </div>
                         <div className="form-group mt-3">
                             <label>Confirm Password</label>
-                            <input
-                                type="password"
-                                className="form-control mt-1"
-                                placeholder="Retype password"
-                            />
+                            <div style={{width:"110%"}}>
+                            <input type="password" className="form-control mt-1" placeholder="Retype password"/>
+                            </div>
                         </div>
                         <div className="d-grid gap-2 mt-3">
-                            <button type="submit" className="btn btn-primary">
+                        <div style={{display:"flex",justifyContent:"center"}} >
+                            <button style={{width:"65%",marginBottom:"30px",marginTop:"10px"}} onClick= {handleSignUp} type="submit" className="btn btn-primary">
                                 Confirm
                             </button>
+                            </div>
                         </div>
                     </div>
                 </form>
