@@ -22,24 +22,24 @@ setPassword(e.target.value);
    const handleAdd = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
 
-    try {
-        // Make a POST request to the backend API endpoint
-        const response = await axios.post('http://localhost:5270/api/auth/"login"', {
+    // try {
+    //     // Make a POST request to the backend API endpoint
+    //     const response = await axios.post('http://localhost:5270/api/auth/"login"', {
            
-            Email: email,
+    //         Email: email,
            
-            Password: password
-        });
+    //         Password: password
+    //     });
 
-        // Handle the response here if needed
-        console.log('login successful:', response.data);
+    //     // Handle the response here if needed
+    //     console.log('login successful:', response.data);
 
-        // Optionally, you can redirect the user to another page
-        // after successful sign-up
-        // history.push('/login');
-    } catch (error) {
-        console.error('Error :', error.response.data);
-    }
+    //     // Optionally, you can redirect the user to another page
+    //     // after successful sign-up
+    //     // history.push('/login');
+    // } catch (error) {
+    //     console.error('Error :', error.response.data);
+    // }
 };
 
 

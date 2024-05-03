@@ -7,7 +7,7 @@ import Signin from './component/Account/Signin'
 import Contact from './component/contact/Contact'
 import Error from './component/Error/Error'
 import History from './component/History/History'
-import TravelDistination from './component/TravelDistination/TravelDistination'
+
 import BusStation from './component/BusStation/BusStation'
 import Tickets from './component/Tickets/Tickets'
 import  Footer  from './component/Footercomponent/Footer';
@@ -17,10 +17,11 @@ import UpdateTickets from './component/CRUD/UpdateTickets';
 import ManageUsers from './component/ManageUsers/ManageUsers'
 import Requestlist from './component/Request/Requestslist';
 import RequestAppointments from './component/Request/RequestAppointments';
-
+import Showusers from './component/ManageUsers/showusers';
+import Request from './component/Request/Requestslist';
 
 function App() {
-    
+    ///jwt
 
     return (
         <>
@@ -34,9 +35,9 @@ function App() {
         <Route path="/contactus" element={<Contact/>} ></Route>
         <Route path="/signin" element={<Signin/>} ></Route>
         <Route path="/signup" element={<SignUp/>} ></Route>
-        <Route path="/travelsistination" element={<TravelDistination/>} ></Route>
+        
         <Route path="/tickets" element={<Tickets/>} ></Route>
-        <Route path="/traveldistination" element={<TravelDistination/>} ></Route>
+       
         <Route path="/history" element={<History/>} ></Route>
         <Route path="/busstation" element={<BusStation/>} ></Route>
         <Route path="/addroutes" element={<Create/>} ></Route>
@@ -45,6 +46,9 @@ function App() {
         <Route path="/manageusers" element={<ManageUsers/>} ></Route>
         <Route path="/request" element={<Requestlist/>} ></Route>
         <Route path="/requestappointments" element={<RequestAppointments/>} ></Route>
+        
+        <Route path="/showusers" element={<Showusers/>} ></Route>
+        <Route path="/Request" element={<Request/>} ></Route>
 
         
         

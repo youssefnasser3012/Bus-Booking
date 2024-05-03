@@ -36,6 +36,13 @@ namespace fproject.Migrations
                     b.Property<int>("MaxTravelers")
                         .HasColumnType("int");
 
+                    b.Property<string>("classe")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("price")
+                        .HasColumnType("int");
+
                     b.HasKey("AppointmentId");
 
                     b.ToTable("Appointments");
@@ -78,6 +85,9 @@ namespace fproject.Migrations
                     b.Property<int>("AppointmentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("DestinationId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -88,6 +98,8 @@ namespace fproject.Migrations
                     b.HasKey("RequestId");
 
                     b.HasIndex("AppointmentId");
+
+                    b.HasIndex("DestinationId");
 
                     b.HasIndex("UserId");
 
@@ -132,7 +144,7 @@ namespace fproject.Migrations
                     b.HasOne("fproject.Models.Appointment", "Appointment")
                         .WithMany("Destination")
                         .HasForeignKey("AppointmentId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Appointment");
@@ -143,16 +155,24 @@ namespace fproject.Migrations
                     b.HasOne("fproject.Models.Appointment", "Appointment")
                         .WithMany("TravelerRequest")
                         .HasForeignKey("AppointmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("fproject.Models.Destination", "Destination")
+                        .WithMany("TravelerRequest")
+                        .HasForeignKey("DestinationId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("fproject.Models.User", "User")
                         .WithMany("TravelerRequest")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Appointment");
+
+                    b.Navigation("Destination");
 
                     b.Navigation("User");
                 });
@@ -161,6 +181,11 @@ namespace fproject.Migrations
                 {
                     b.Navigation("Destination");
 
+                    b.Navigation("TravelerRequest");
+                });
+
+            modelBuilder.Entity("fproject.Models.Destination", b =>
+                {
                     b.Navigation("TravelerRequest");
                 });
 

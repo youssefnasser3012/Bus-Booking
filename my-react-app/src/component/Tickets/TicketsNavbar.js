@@ -44,7 +44,7 @@ return (
     <Nav className="nav_links ms-auto pl-3">
     <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
     <Link to="/tickets"  style={{textDecoration:'none'}}><Nav.Item href="/tickets">Tickets</Nav.Item></Link>
-    <Link to="/traveldistination" style={{textDecoration:'none'}}><Nav.Item href="/traveldistination">Travel Distination</Nav.Item></Link>
+    <Link to="/requestappointments" style={{textDecoration:'none'}}><Nav.Item href="/requestappointments">Request Tickets</Nav.Item></Link>
     <Link to="/history" style={{textDecoration:'none'}}><Nav.Item href="/history">History</Nav.Item></Link>
     <Link to="/busstation" style={{textDecoration:'none'}}><Nav.Item href="/busstation">Bus Station</Nav.Item></Link>
    

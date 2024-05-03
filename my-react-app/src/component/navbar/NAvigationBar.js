@@ -44,10 +44,10 @@ return (
       
       <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
       {((Admin )&& (UserRole) &&( UserRole.role === "Admin") )?<Link to="/updatetickets"  style={{textDecoration:'none'}}><Nav.Item href="/updatetickets">Update Tickets</Nav.Item></Link> :<Link to="/tickets"  style={{textDecoration:'none'}}><Nav.Item href="/tickets">Tickets</Nav.Item></Link>}
-     { ((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? null:<Link to="/traveldistination" style={{textDecoration:'none'}}><Nav.Item href="/traveldistination">Travel Distination</Nav.Item></Link>}
+     { ((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? null:<Link to="/requestappointments" style={{textDecoration:'none'}}><Nav.Item href="/requestappointments">Request Tickets</Nav.Item></Link>}
       {((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? <Link to="/request" style={{textDecoration:'none'}}><Nav.Item href="/request">Requests</Nav.Item></Link>: <Link to="/history" style={{textDecoration:'none'}}><Nav.Item href="/history">History</Nav.Item></Link>}
      { ((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? null:<Link to="/busstation" style={{textDecoration:'none'}}><Nav.Item href="/busstation">Bus Station</Nav.Item></Link>}
-  {((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? <Link to="/manageusers" style={{textDecoration:'none'}}><Nav.Item href="/manageusers"> Manage Users</Nav.Item></Link>: null}
+  {((Admin )&& (UserRole) &&( UserRole.role === "Admin") )? <Link to="/showusers" style={{textDecoration:'none'}}><Nav.Item href="/showusers"> Traveleres</Nav.Item></Link>: null}
       </Nav>
    
       <div>

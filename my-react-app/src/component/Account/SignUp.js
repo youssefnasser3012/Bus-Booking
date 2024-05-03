@@ -10,7 +10,7 @@ import Joi from '@hapi/joi';
 const SignUp = () => {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
@@ -19,7 +19,7 @@ const SignUp = () => {
     const clearForm = () => {
         setConfirmPassword('');
         setUsername('');
-        setPhoneNumber('');
+       
         setEmail('');
         setPassword('');
         setError('');
@@ -27,9 +27,9 @@ const SignUp = () => {
 
     const signUpSchema = Joi.object({
         username: Joi.string().min(3).max(30).required().label('Username'),
-        phoneNumber: Joi.string().min(11).max(11).pattern(/^[0-9]+$/).required().label('Phone Number'),
+
         email: Joi.string().email({ tlds: { allow: false } }).required().label('Email'),
-        password: Joi.string().pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{14,}$')).required().label('Password'),
+        password: Joi.string().pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$')).required().label('Password'),
         
     });
 
@@ -46,7 +46,7 @@ const SignUp = () => {
 
         const formData = {
             username,
-            phoneNumber,
+         
             email,
             password,
         };
@@ -101,12 +101,7 @@ const SignUp = () => {
                             </div>
                         </div>
 
-                        <div className="form-group mt-3">
-                            <label>Phone Number</label>
-                            <div style={{width:"110%"}}>
-                            <input onChange={(e) => setPhoneNumber(e.target.value)} type="number" className="form-control mt-1" placeholder="Enter number" style={{ WebkitAppearance: 'none', MozAppearance: 'textfield' }} />
-                            </div>
-                        </div>
+                      
                         <div className="form-group mt-3">
                             <label>Email address</label>
                             <div style={{width:"110%"}}>

@@ -18,24 +18,31 @@ namespace fproject.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Define relationships between tables
+           
             modelBuilder.Entity<TravelerRequest>()
                 .HasOne(tr => tr.User)
                 .WithMany(u => u.TravelerRequest)
                 .HasForeignKey(tr => tr.UserId)
-               .OnDelete(DeleteBehavior.Restrict);
+               .OnDelete(DeleteBehavior.Cascade); 
 
             modelBuilder.Entity<TravelerRequest>()
                 .HasOne(tr => tr.Appointment)
                 .WithMany(a => a.TravelerRequest)
                 .HasForeignKey(tr => tr.AppointmentId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
 
-            
+
             modelBuilder.Entity<Destination>()
                     .HasOne(d => d.Appointment)
                     .WithMany(a => a.Destination)
                     .HasForeignKey(d => d.AppointmentId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<TravelerRequest>()
+                .HasOne(tr => tr.Destination)
+                .WithMany(a => a.TravelerRequest)
+                .HasForeignKey(tr => tr.DestinationId)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             /*migrationBuilder.CreateTable(
@@ -63,6 +70,5 @@ namespace fproject.Data
 
     }
 }
-/*dotnet ef migrations add UpdateUserTableAndAddDestinationTable
-dotnet ef database update*/
+
 

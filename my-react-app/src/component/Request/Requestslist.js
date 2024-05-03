@@ -57,6 +57,84 @@ const Request=()=>{
             </tr>
         </tbody>
     </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+                <th><PiUserSquareDuotone size="1.6rem" /> User</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>Event</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>cairo</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>luxor</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>
+              <div>20 march</div>
+              <div>18:33</div>
+              
+              </div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>120</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+              <div style={{width:"100%"}}>
+                    <button className='btn btn-sm btn-success mx-auto row m-2' style={{width:"60%"}}> Accept </button>{' '}<br/>
+                   
+                    <button className='btn btn-sm btn-danger mx-auto row' style={{width:"60%"}} >Decline</button>{'  '}
+                    </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+                <th><PiUserSquareDuotone size="1.6rem" /> User</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>Event</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>cairo</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>luxor</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>
+              <div>20 march</div>
+              <div>18:33</div>
+              
+              </div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>120</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+              <div style={{width:"100%"}}>
+                    <button className='btn btn-sm btn-success mx-auto row m-2' style={{width:"60%"}}> Accept </button>{' '}<br/>
+                   
+                    <button className='btn btn-sm btn-danger mx-auto row' style={{width:"60%"}} >Decline</button>{'  '}
+                    </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </Table>
     
 </div>
 </div>

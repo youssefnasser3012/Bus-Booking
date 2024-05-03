@@ -55,6 +55,146 @@ const PendingReqest=()=>{
         </tbody>
     
     </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+               
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+             
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>5</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+                    <div style={{color:"red",fontWeight:"bold"}}>Pending</div>
+                    
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    
+    </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+               
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+             
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>5</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+                    <div style={{color:"red",fontWeight:"bold"}}>Pending</div>
+                    
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    
+    </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+               
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+             
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>5</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+                    <div style={{color:"green",fontWeight:"bold"}}>Approved</div>
+                    
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    
+    </Table>
+    <Table striped bordered hover size="sm" responsive="md">
+        <thead>
+            <tr>
+                
+               
+                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                <th><FcClock size="1.6rem" /> Date and Time</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+               
+
+             
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>5</div></td>
+              <td><div className='mt-4' style={{fontWeight:"bold"}}>ahmed20240</div></td>
+             
+            
+                <td>
+                <div className='row  mt-3'>
+                    <div style={{color:"green",fontWeight:"bold"}}>Approved</div>
+                    
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    
+    </Table>
 </div>
 </div>
 

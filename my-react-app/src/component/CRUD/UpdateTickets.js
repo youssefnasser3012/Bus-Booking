@@ -76,8 +76,8 @@ const fromRef=useRef('');
         <thead>
             <tr>
                 <th><FaRoute size="1.4rem" /></th>
-                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
-                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                {/* <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                <th><PiMapPinLineDuotone size="1.4rem" />To</th> */}
                 <th><FcCalendar size="1.6rem" /> Date and Time</th>
                 <th><FcMoneyTransfer size="1.6rem" /> Ticket Price</th>
                 <th>Class</th>
@@ -89,15 +89,15 @@ const fromRef=useRef('');
         <tbody>
             <tr>
                 <td><div className=' mt-5'>1</div></td>
-                <td><input type="text" ref={(ref)=>fromRef.current=ref}  placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>
-                <td><input type="text" ref={(ref)=>toRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin  mt-5" /></td>
+                {/* <td><input type="text" ref={(ref)=>fromRef.current=ref}  placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>
+                <td><input type="text" ref={(ref)=>toRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin  mt-5" /></td> */}
                 <td>   
                 <div>
 
                 <label>Date:</label>{' '}
                <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}}type="date" ref={(ref)=>UpdatedDateRef.current=ref}/> </div>
-              <label>Time:</label>
-               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}} type="time"  ref={(ref)=>UpdatedTimeRef.current=ref}/></div>
+              {/* <label>Time:</label>
+               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}} type="time"  ref={(ref)=>UpdatedTimeRef.current=ref}/></div> */}
               </div>
               </td>
                 <td><input  type="number" ref={(ref)=>TicketsPriceRef.current=ref} className="no-arrows form-control-sm no-padding no-margin mt-5" /></td>

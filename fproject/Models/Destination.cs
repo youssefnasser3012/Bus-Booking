@@ -8,7 +8,7 @@ namespace fproject.Models
         {
         [Key]
         public int DestinationId { get; set; }
-            public string From { get; set; }
+        public string From { get; set; }
         public string To { get; set; }
 
         [ForeignKey("Appointment")]
@@ -17,7 +17,8 @@ namespace fproject.Models
 
         // Navigation property
         public Appointment Appointment { get; set; }
-        
+        public ICollection<TravelerRequest> TravelerRequest { get; set; }
+
     }
 
     

@@ -1,6 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { Table,Form } from 'react-bootstrap';
 import Navbar from  '../Account/navbar';
+import { Link } from 'react-router-dom';
+import { FaRegUserCircle } from "react-icons/fa";
+import { BiLogoGmail } from "react-icons/bi";
+import { FaPhoneSquareAlt } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
 
 
 const ManageUsers = () => {
@@ -56,10 +61,12 @@ const ManageUsers = () => {
                 <Table striped bordered hover size="sm" responsive="md">
                     <thead>
                         <tr>
-                            <th>User Name</th>
-                            <th>Email</th>
-                            <th>password</th>
-                            <th>Event</th>
+                        <th><FaRegUserCircle size="1.4rem" />User Name</th>
+                <th><BiLogoGmail size="1.4rem" />Email</th>
+               
+                <th><MdAdminPanelSettings size="1.5rem" />Current Role </th>
+                
+                <th>Event</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,20 +75,35 @@ const ManageUsers = () => {
                             <td><input type="text"  placeholder="Enter UserName" className="form-control form-control-sm no-margin" ref={(ref)=>username.current=ref} /> </td>
                             <td><input type="email"  placeholder="Enter Email" className="form-control form-control-sm no-margin" ref={(ref)=>email.current=ref} /></td>
                             <td><input type="password" placeholder="Enter Password" className="form-control form-control-sm no-padding no-margin" ref={(ref)=>password.current=ref}/></td>
-                            
+                            <td>
+                           
+              <div style={{width:"70%"}}>
+
+              <Form.Select style={{  borderRadius: "20px" }} >
+                                            <option>Select Role</option>
+                                            <option value="Alexandria">ADMIN</option>
+                                            <option value="Aswan">traveler</option>
+                                          
+                                        </Form.Select>
+
+              </div>
+             
+
+                            </td>
                         <td>
                         <div className='row'>
                             <button className='btn btn-sm btn-success mx-auto row m-2 ' style={{margin:"30px"}} onClick={handleAdd} > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 'onClick={handleDelete} >Delete</button>{'  '}
+                           
                             </div>
                         </td>
                         
-                            
+                           
                             
                         
                         </tr>
                     </tbody>
                 </Table>
+               
             </div>
             </div>
         </>

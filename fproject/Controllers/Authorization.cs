@@ -36,7 +36,7 @@ namespace fproject.Controllers
         public async Task<IActionResult> Register([FromBody] SignupDto userForRegisterDto)
         {
 
-            userForRegisterDto.Email = userForRegisterDto.Email;
+           
             if (await _repo.UserExist(userForRegisterDto.Email))
             {
                 return BadRequest("Email already exists");
