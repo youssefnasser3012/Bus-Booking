@@ -11,5 +11,6 @@ namespace fproject.Repository
         public int updateDestination(DestinationDto destinationfromdto);
         public int deleteDestination(int id);
         public List<DesJoinAppoin> GetDestinations2();
+        public List<DesJoinAppoin> GetDestinationsFiltered(string fromLocation, string to);
     }
 }

@@ -22,22 +22,10 @@ namespace fproject.Controllers
             _dbContext = context;
             _repo = repo;
         }
-         [HttpPost]
-        [Route("/api")] 
-        /*public  async Task <IActionResult> createAppointement([FromBody] AppointmentDto appointementfromdto)
-        {
-            var appointement = new Appointment()
-            {
-                DepartureTime = appointementfromdto.DepartureTime,
-                MaxTravelers = appointementfromdto.MaxTravelers,
-            };
-            appointement.AppointmentId = 0;
-            _dbContext.Set<Appointment>().Add(appointement);
-            _dbContext.SaveChanges();
-            return Ok(appointement.AppointmentId);
-        }*/
-        [HttpPost("create")]
-        public async Task<IActionResult> Register([FromBody] SignupDto userForRegisterDto)
+         
+        [HttpPost]
+        [Route("Create")]
+        public async Task<IActionResult> Register([FromBody] userDto userForRegisterDto,string password)
         {
 
             userForRegisterDto.Email = userForRegisterDto.Email;
@@ -50,15 +38,15 @@ namespace fproject.Controllers
             {
                 Username = userForRegisterDto.Username,
                 Email = userForRegisterDto.Email,
-                Role = "User" // Set default role if needed
+                Role = userForRegisterDto.Role
             };
-            await _repo.Register(userToCreate, userForRegisterDto.Password);
+            await _repo.Register(userToCreate, password);
 
             return Ok();
 
         }
         [HttpPut]
-        [Route("")]
+        [Route("Update")]
         public async Task<IActionResult> updateUser([FromBody] userDto  user)
         {
             var existing = _dbContext.Set<User>().Find(user.UserId);
@@ -70,7 +58,7 @@ namespace fproject.Controllers
             return Ok();
         }
         [HttpDelete]
-        [Route("")]
+        [Route("Delete")]
         public ActionResult deleteUser([FromBody] userDto user)
         {
             var existing = _dbContext.Set<User>().Find(user.UserId);
@@ -79,14 +67,14 @@ namespace fproject.Controllers
             return Ok();
         }
         [HttpGet]
-        [Route("")]
+        [Route("GetAll")]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
             var records=_dbContext.Set<User>().ToList();
             return Ok(records);
         }
         [HttpGet]
-        [Route("{id}")]
+        [Route("GetOne{id}")]
         public ActionResult<User> GetUser(int id)
         {
             var record = _dbContext.Set<User>().Where(x=>x.UserId==id);

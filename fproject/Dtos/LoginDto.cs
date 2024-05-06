@@ -14,7 +14,7 @@ namespace fproject.Dtos
             [StringLength(255)]
             public string Password { get; set; }
 
-        public string Username { get; set; }
+        
 
 
     }

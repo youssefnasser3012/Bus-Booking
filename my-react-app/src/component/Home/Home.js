@@ -22,20 +22,53 @@ import { FcAlarmClock } from "react-icons/fc";
 import { FcMoneyTransfer } from "react-icons/fc";
 import { FcManager } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
+import { FaRoute } from "react-icons/fa";
+import  {jwtDecode } from 'jwt-decode';
+import  { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+
 
 const Home = () => {
+    const navigate = useNavigate();
+    const [destinations, setDestinations] = useState([]);
+    const [appointments, setAppointments] = useState([]);
+    const UserRole = localStorage.getItem('token');
+    const decodedToken = UserRole ? jwtDecode(UserRole) : null;
+    const role = decodedToken ? decodedToken.role : 'User';
+
+    useEffect(() => {
+        if (!UserRole) {
+            navigate('/signin');
+        } else {
+           
+            
+            const fetchAppointment = async () => {
+                try {
+                    const response = await axios.get('http://localhost:5270/api/Appointment');
+                    setAppointments(response.data);
+                } catch (error) {
+                    console.error('Error fetching appointments:', error);
+                }
+            };
+
+            fetchAppointment();
+
+            const fetchDestination = async () => {
+                try {
+                    const response = await axios.get('http://localhost:5270/api/Destination/GetAll');
+                    setDestinations(response.data);
+                } catch (error) {
+                    console.error('Error fetching destinations:', error);
+                }
+            };
+
+            fetchDestination();
+        }
+    }, [UserRole, navigate]);
+
     
-    const  UserRole= JSON.parse(localStorage.getItem('UserRole'));
-  
-    const signin = JSON.parse(localStorage.getItem('signin'));
-  
-    const issignIn  = signin !== null;
-
-
-
-    const Admin = (issignIn)  && (signin.email ===UserRole.email ) && (signin.password ===UserRole.password)  ? true:false;
-   
-
 
    
    
@@ -44,7 +77,10 @@ return (
 <>
 
 <NavigationBar/>
-{/* <Carousel style={{marginTop:'20px', marginBottom:'100px'}} responsive className=' w-50 container '>
+
+
+
+{role==="User"?<Carousel style={{marginTop:'20px', marginBottom:'100px'}} responsive className=' w-50 container '>
 {CarouselData.map((item)=>(
 
 
@@ -56,334 +92,102 @@ return (
     </Carousel.Item>
 ))}
 
-</Carousel> */}
+</Carousel> :
 
 <div className='row pb-5 mb-5'>
 <div  className='col-6' style={{ maxHeight: '400px', overflowY: 'scroll' ,marginTop:"50px"}}>
       <ul>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FcManager  size="1.4rem" />User ID</th>
-                <th><FcConferenceCall size="1.5rem" />Max traveleres</th>
-                <th><FcAlarmClock size="1.5rem" /> Time</th>
-                <th><FcCopyright size="1.5rem" />Class </th>
-                <th><FcMoneyTransfer size="1.5rem" />Price </th> 
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '   > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        
-                           
-                            
-                        
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FcManager  size="1.4rem" />User ID</th>
-                <th><FcConferenceCall size="1.5rem" />Max traveleres</th>
-                <th><FcAlarmClock size="1.5rem" /> Time</th>
-                <th><FcCopyright size="1.5rem" />Class </th>
-                <th><FcMoneyTransfer size="1.5rem" />Price </th> 
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '   > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        
-                           
-                            
-                        
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FcManager  size="1.4rem" />User ID</th>
-                <th><FcConferenceCall size="1.5rem" />Max traveleres</th>
-                <th><FcAlarmClock size="1.5rem" /> Time</th>
-                <th><FcCopyright size="1.5rem" />Class </th>
-                <th><FcMoneyTransfer size="1.5rem" />Price </th> 
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '   > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        
-                           
-                            
-                        
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FcManager  size="1.4rem" />User ID</th>
-                <th><FcConferenceCall size="1.5rem" />Max traveleres</th>
-                <th><FcAlarmClock size="1.5rem" /> Time</th>
-                <th><FcCopyright size="1.5rem" />Class </th>
-                <th><FcMoneyTransfer size="1.5rem" />Price </th> 
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '   > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        
-                           
-                            
-                        
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FcManager  size="1.4rem" />User ID</th>
-                <th><FcConferenceCall size="1.5rem" />Max traveleres</th>
-                <th><FcAlarmClock size="1.5rem" /> Time</th>
-                <th><FcCopyright size="1.5rem" />Class </th>
-                <th><FcMoneyTransfer size="1.5rem" />Price </th> 
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '   > Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        
-                           
-                            
-                        
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
+      {appointments.map(appointment => (
+      <div style={{ display: "flex", justifyContent: "center" }}>
       
+            <Table striped bordered hover size="sm" responsive="md">
+                <thead>
+                    <tr>
+                        <th><FcManager size="1.4rem" />Appointment ID</th>
+                        <th><FcConferenceCall size="1.5rem" />Max travelers</th>
+                        <th><FcAlarmClock size="1.5rem" />Time</th>
+                        <th><FcCopyright size="1.5rem" />Class</th>
+                        <th><FcMoneyTransfer size="1.5rem" />Price</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr key={appointment.appointmentId}>
+                            <td>{appointment.appointmentId}</td>
+                            <td>{appointment.maxTravelers}</td>
+                            <td>{appointment.departureTime}</td> 
+                            <td>{appointment.classe}</td> 
+                            <td>{appointment.price}</td>
+                            <td>
+                                <div className='row'>
+                                <Link to="/updatetickets">    <button className='btn btn-sm btn-warning mx-auto row m-2 '> Update </button> </Link> {' '}
+                                </div>
+                            </td>
+                        </tr>
+                  
+                </tbody>
+          
+            </Table>
+      
+        </div>
+    ))};
+  
                 </ul>
                 </div>
  {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
      
    
 <div  className='col-6' style={{ maxHeight: '400px', overflowY: 'scroll' ,marginTop:"50px",width:"40%"}}>
-      <ul>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FaRegUserCircle size="1rem" />From</th>
-                <th><BiLogoGmail size="1rem" />To</th>
-            
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                          
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '> Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FaRegUserCircle size="1rem" />From</th>
-                <th><BiLogoGmail size="1rem" />To</th>
-            
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                          
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '> Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FaRegUserCircle size="1rem" />From</th>
-                <th><BiLogoGmail size="1rem" />To</th>
-            
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                          
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '> Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FaRegUserCircle size="1rem" />From</th>
-                <th><BiLogoGmail size="1rem" />To</th>
-            
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                          
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '> Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
-      <div style={{display:"flex",justifyContent:"center"}}>
-      <Table striped bordered hover size="sm" responsive="md">
-                    <thead>
-                        <tr>
-                <th><FaRegUserCircle size="1rem" />From</th>
-                <th><BiLogoGmail size="1rem" />To</th>
-            
-                <th>Event</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                           
-                          
-                           <td></td>
-                           <td></td>
-                        <td>
-                        <div className='row'>
-                            <button className='btn btn-sm btn-success mx-auto row m-2 '> Add </button>{' '}
-                            <button className='btn btn-sm btn-danger mx-auto row m-2 ' >Delete</button>{'  '}
-                            </div>
-                        </td>
-                        </tr>
-                    </tbody>
-                </Table>
-                </div>
 
-                
+      <ul>
+      {destinations.map(destinations => (
+      <div style={{display:"flex",justifyContent:"center"}}>
+     
+      <Table striped bordered hover size="sm" responsive="md">
+            <thead>
+                <tr>
+                    <th><FaRoute size="1rem" />{' '}Appointment ID</th>
+                    <th><FaRoute size="1rem" />{' '}From</th>
+                    <th><FaRoute size="1rem" />{' '}To</th>
+                    <th>Event</th>
+                </tr>
+            </thead>
+            <tbody>
+              
+                    <tr key={destinations.appointmentId}>
+                        <td>{destinations.appointmentId}</td>
+                        <td>{destinations.from}</td>
+                        <td>{destinations.to}</td>
+                        <td>
+                            <div className='row'>
+                           <Link to="/updateroutes">    <button className='btn btn-sm btn-warning mx-auto row m-2 '> Update </button> </Link> {' '}
+                                
+                            </div>
+                        </td>
+                    </tr>
+              
+            </tbody>
+      
+        </Table>
+  
+                </div>
+            ))}
+          
                 </ul>
                 </div>
 </div>
+}
 
 {/* ######################################################################################## */}
 <p className='row justify-content-center' style={{fontSize:'2.6rem'}}>Bus Routes </p>
 <div className='row text-center justify-content-center' >
 
-{RoutesData.map((Routes)=>(
+{destinations.map(destinations => (
 
     <Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
     <Card.Body>
-    <Card.Title>{Routes.Route}</Card.Title>
+    <Card.Title>{   `${destinations.from}-${destinations.to}`}</Card.Title>
 
 
     </Card.Body>
@@ -394,13 +198,13 @@ return (
 
     
 ))}
-{ ( (Admin) && (UserRole )&&( UserRole.role === "Admin") )?  <Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
+{ role=="User"? null :<Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
 <Card.Body>
 
-<Link to="/addroutes" style={{color:"black"}} ><IoMdAddCircle size="3rem" className="Add_Routes" /></Link>
+<Link to="/updateroutes" style={{color:"black"}} ><IoMdAddCircle size="3rem" className="Add_Routes" /></Link>
 </Card.Body>
 
-</Card>: null } 
+</Card> } 
 
 
 </div>
@@ -476,22 +280,21 @@ return (
 </div>
 </div>
 
-<Card className='mb-3' style={{backgroundColor:"#f9f9f9"}}>
+{UserRole==="User"?<Card className='mb-3' style={{backgroundColor:"#f9f9f9"}}>
 <Card.Body>
                           <div  style={{marginLeft:"190px"}}>
                          
-                          {/* <div className='raw'> */}
+                        
                           <Link to="/requestappointments" style={{textDecoration:'none'}}><Button className="m-4 p-3" variant="success" href="/requestappointments">Request Appointments</Button></Link> {' '}
-                            {/* </div> */}
-                            {/* <div className='raw'> */}
+                           
                             <Link to="/tickets" style={{textDecoration:'none'}}><Button className="m-5 p-3" variant="success" href="/tickets">Book Tickets</Button></Link>{' '}
-                            {/* </div> */}
+                           
                             
                             </div>
                             </Card.Body>
-                            </Card>                  
+                            </Card>: null  } ;          
 
     </>
-)};
+)}; 
 
 export default Home;

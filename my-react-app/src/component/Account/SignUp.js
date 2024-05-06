@@ -15,6 +15,7 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [showAlert, setShowAlert] = useState(false);
+  
 
     const clearForm = () => {
         setConfirmPassword('');
@@ -25,13 +26,7 @@ const SignUp = () => {
         setError('');
     };
 
-    const signUpSchema = Joi.object({
-        username: Joi.string().min(3).max(30).required().label('Username'),
-
-        email: Joi.string().email({ tlds: { allow: false } }).required().label('Email'),
-        password: Joi.string().pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$')).required().label('Password'),
-        
-    });
+   
 
     const navigate = useNavigate();
 
@@ -44,54 +39,66 @@ const SignUp = () => {
             return;
         }
 
-        const formData = {
-            username,
-         
-            email,
-            password,
+
+        const signupdata = {
+            Username: username,
+            Email: email,
+            Password: password,
         };
 
-        const { error: validationError } = signUpSchema.validate(formData, { abortEarly: false });
+//         const signUpSchema = Joi.object({
+//     username: Joi.string().min(3).max(30).required().label('Username'),
+//     email: Joi.string().email({ tlds: false }).required().label('Email'),
+//     password: Joi.string()
+//         .min(8)
+//         .required()
+//         .pattern(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).*$'))
+//         .label('Password')
+//         .messages({
+//             'string.pattern.base': 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and one number.',
+//         }),
+// });
 
-        if (validationError) {
-            const errorMessage = validationError.details.map(err => {
-                if (err.path[0] === 'password') {
-                    return 'Password must contain at least one uppercase letter, one lowercase letter, one special character, one number, and be at least 14 characters long.';
-                } else {
-                    return err.message;
-                }
-            }).join('. ');
-            setError(errorMessage);
-            setShowAlert(true);
-            return;
-        }
+// const { error: validationError } = signUpSchema.validate(signupdata, { abortEarly: false });
 
+// if (validationError) {
+//     const errorMessage = validationError.details.map(err => err.message).join('. ');
+//     setError(errorMessage);
+//     setShowAlert(true);
+//     return;
+// }
+
+if (password !== confirmPassword) {
+    setError('Passwords do not match');
+    setShowAlert(true);
+    return;
+}
+
+        
+    
+       
         try {
-            const response = await axios.post('http://localhost:5270/api/auth/register', formData);
+            // Make the axios post request with signupdata
+            const response = await axios.post('http://localhost:5270/api/auth/register', signupdata);
             console.log('Sign-up successful:', response.data);
             clearForm();
-            navigate('/home');
-        } catch (error) {
-            console.error(error.response.data);
-        setError(error.response.data); 
+            navigate('/signin');
+        } catch (err) {
+             console.error(err.response.data);
+             setError(err.response.data);
             setShowAlert(true);
         }
+        
     };
 
-    useEffect(() => {
-        if (showAlert) {
-            const timer = setTimeout(() => {
-                setShowAlert(false);
-            }, 5555);
-            return () => clearTimeout(timer);
-        }
-    }, [showAlert]);
+    
 
     return (
+
         <>
             <Navbar />
             <div className="Auth-form-container">
-                <form className="Auth-form">
+                <form className="Auth-form" onSubmit={handleSignUp}>
                     <div className="Auth-form-content">
                         <h3 className="Auth-form-title">Sign Up</h3>
                         <div className="form-group mt-3">
@@ -124,7 +131,7 @@ const SignUp = () => {
                        
                         <div className="d-grid gap-2 mt-3">
                             <div style={{ display: "flex", justifyContent: "center" }} >
-                                <button style={{ width: "65%", marginBottom: "10px", marginTop: "10px" }} onClick={handleSignUp} type="submit" className="btn btn-primary">
+                                <button style={{ width: "65%", marginBottom: "10px", marginTop: "10px" }}  type="submit" className="btn btn-primary">
                                     Confirm
                                 </button>
                                 

@@ -1,21 +1,5 @@
 [
   {
-    "ContainingType": "fproject.Controllers.CRUDuser",
-    "Method": "Register",
-    "RelativePath": "api",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userForRegisterDto",
-        "Type": "fproject.Dtos.SignupDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "fproject.Controllers.AppointmentController",
     "Method": "GetAppointments",
     "RelativePath": "api/Appointment",
@@ -28,7 +12,7 @@
   {
     "ContainingType": "fproject.Controllers.AppointmentController",
     "Method": "InsertAppointment",
-    "RelativePath": "api/Appointment",
+    "RelativePath": "api/Appointment/Create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -43,15 +27,15 @@
   },
   {
     "ContainingType": "fproject.Controllers.AppointmentController",
-    "Method": "PutAppointment",
-    "RelativePath": "api/Appointment",
-    "HttpMethod": "PUT",
+    "Method": "DeleteAppointment",
+    "RelativePath": "api/Appointment/Delete/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "appointment",
-        "Type": "fproject.Dtos.AppointmentDto",
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -60,7 +44,7 @@
   {
     "ContainingType": "fproject.Controllers.AppointmentController",
     "Method": "GetAppointment",
-    "RelativePath": "api/Appointment/{id}",
+    "RelativePath": "api/Appointment/GetOne/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -75,15 +59,15 @@
   },
   {
     "ContainingType": "fproject.Controllers.AppointmentController",
-    "Method": "DeleteAppointment",
-    "RelativePath": "api/Appointment/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "PutAppointment",
+    "RelativePath": "api/Appointment/Update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "id",
-        "Type": "System.Int32",
+        "Name": "appointment",
+        "Type": "fproject.Dtos.AppointmentDto",
         "IsRequired": true
       }
     ],
@@ -123,16 +107,21 @@
   },
   {
     "ContainingType": "fproject.Controllers.CRUDuser",
-    "Method": "updateUser",
-    "RelativePath": "api/crudU",
-    "HttpMethod": "PUT",
+    "Method": "Register",
+    "RelativePath": "api/crudU/Create",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
+        "Name": "userForRegisterDto",
         "Type": "fproject.Dtos.userDto",
         "IsRequired": true
+      },
+      {
+        "Name": "password",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -140,7 +129,7 @@
   {
     "ContainingType": "fproject.Controllers.CRUDuser",
     "Method": "deleteUser",
-    "RelativePath": "api/crudU",
+    "RelativePath": "api/crudU/Delete",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -156,7 +145,7 @@
   {
     "ContainingType": "fproject.Controllers.CRUDuser",
     "Method": "GetUsers",
-    "RelativePath": "api/crudU",
+    "RelativePath": "api/crudU/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -176,7 +165,7 @@
   {
     "ContainingType": "fproject.Controllers.CRUDuser",
     "Method": "GetUser",
-    "RelativePath": "api/crudU/{id}",
+    "RelativePath": "api/crudU/GetOne{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -201,15 +190,15 @@
   },
   {
     "ContainingType": "fproject.Controllers.CRUDuser",
-    "Method": "Register",
-    "RelativePath": "api/crudU/create",
-    "HttpMethod": "POST",
+    "Method": "updateUser",
+    "RelativePath": "api/crudU/Update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userForRegisterDto",
-        "Type": "fproject.Dtos.SignupDto",
+        "Name": "user",
+        "Type": "fproject.Dtos.userDto",
         "IsRequired": true
       }
     ],
@@ -217,18 +206,8 @@
   },
   {
     "ContainingType": "fproject.Controllers.DestinationController",
-    "Method": "GetDestinations",
-    "RelativePath": "api/Destination",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "fproject.Controllers.DestinationController",
     "Method": "InsertDestination",
-    "RelativePath": "api/Destination",
+    "RelativePath": "api/Destination/Create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -243,25 +222,9 @@
   },
   {
     "ContainingType": "fproject.Controllers.DestinationController",
-    "Method": "PutDestination",
-    "RelativePath": "api/Destination",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "destination",
-        "Type": "fproject.Dtos.DestinationDto",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "fproject.Controllers.DestinationController",
-    "Method": "GetDestination",
-    "RelativePath": "api/Destination/{id}",
-    "HttpMethod": "GET",
+    "Method": "DeleteDestination",
+    "RelativePath": "api/Destination/Delete/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -275,9 +238,40 @@
   },
   {
     "ContainingType": "fproject.Controllers.DestinationController",
-    "Method": "DeleteDestination",
-    "RelativePath": "api/Destination/{id}",
-    "HttpMethod": "DELETE",
+    "Method": "GetDestinationsFiltered",
+    "RelativePath": "api/Destination/Filter",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromLocation",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "to",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fproject.Controllers.DestinationController",
+    "Method": "GetDestinations",
+    "RelativePath": "api/Destination/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fproject.Controllers.DestinationController",
+    "Method": "GetDestination",
+    "RelativePath": "api/Destination/GetOne/{id}",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -292,7 +286,7 @@
   {
     "ContainingType": "fproject.Controllers.DestinationController",
     "Method": "GetDestination2",
-    "RelativePath": "api/Destination/join",
+    "RelativePath": "api/Destination/GetWjoin",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -300,26 +294,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "fproject.Controllers.TravellerRequestController",
-    "Method": "GetRequests",
-    "RelativePath": "api/TravellerRequest",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "fproject.Controllers.TravellerRequestController",
-    "Method": "CreateRequest",
-    "RelativePath": "api/TravellerRequest",
-    "HttpMethod": "POST",
+    "ContainingType": "fproject.Controllers.DestinationController",
+    "Method": "PutDestination",
+    "RelativePath": "api/Destination/Update",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "requestfromdto",
-        "Type": "fproject.Dtos.TravelerRequestDto",
+        "Name": "destination",
+        "Type": "fproject.Dtos.DestinationDto",
         "IsRequired": true
       }
     ],
@@ -328,7 +312,7 @@
   {
     "ContainingType": "fproject.Controllers.TravellerRequestController",
     "Method": "GetRequest",
-    "RelativePath": "api/TravellerRequest/{id}",
+    "RelativePath": "api/TravellerRequest",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -336,23 +320,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "fproject.Controllers.TravellerRequestController",
-    "Method": "DeleteRequest",
-    "RelativePath": "api/TravellerRequest/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -375,6 +343,22 @@
   },
   {
     "ContainingType": "fproject.Controllers.TravellerRequestController",
+    "Method": "CreateRequest",
+    "RelativePath": "api/TravellerRequest/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "requestfromdto",
+        "Type": "fproject.Dtos.TravelerRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fproject.Controllers.TravellerRequestController",
     "Method": "DeclineRequest",
     "RelativePath": "api/TravellerRequest/Decline",
     "HttpMethod": "PUT",
@@ -387,6 +371,32 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fproject.Controllers.TravellerRequestController",
+    "Method": "DeleteRequest",
+    "RelativePath": "api/TravellerRequest/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "fproject.Controllers.TravellerRequestController",
+    "Method": "GetRequests",
+    "RelativePath": "api/TravellerRequest/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

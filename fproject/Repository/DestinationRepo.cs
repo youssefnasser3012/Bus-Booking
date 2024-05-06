@@ -57,6 +57,7 @@ namespace fproject.Repository
         {
             var records = (from p in _db.Destinations
                            join pa in _db.Appointments on p.AppointmentId equals pa.AppointmentId
+                           where pa.MaxTravelers > 0
                            select new DesJoinAppoin()
                            {
                                DestinationId = p.DestinationId,
@@ -64,9 +65,30 @@ namespace fproject.Repository
                                To = p.To,
                                DepartureTime = pa.DepartureTime,
                                MaxTravelers = pa.MaxTravelers,
+                               classe = pa.classe,
+                               price = pa.price,
+                               AppointmentId = pa.AppointmentId,
                            }).ToList();
             return records;
         }
-        
+        public List<DesJoinAppoin> GetDestinationsFiltered(string fromLocation, string to)
+        {
+            var records = (from p in _db.Destinations
+                           join pa in _db.Appointments on p.AppointmentId equals pa.AppointmentId
+                           where pa.MaxTravelers > 0 && p.From == fromLocation && p.To == to
+                           select new DesJoinAppoin()
+                           {
+                               DestinationId = p.DestinationId,
+                               From = p.From,
+                               To = p.To,
+                               DepartureTime = pa.DepartureTime,
+                               MaxTravelers = pa.MaxTravelers,
+                               classe = pa.classe,
+                               price = pa.price,
+                               AppointmentId = pa.AppointmentId,
+                           }).ToList();
+            return records;
+        }
+
     }
 }

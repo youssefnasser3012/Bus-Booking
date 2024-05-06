@@ -31,6 +31,7 @@ namespace fproject.Repository
                 UserId = requestfromdto.UserId,
                 AppointmentId = requestfromdto.AppointmentId,
                 Status = requestfromdto.Status,
+                DestinationId = requestfromdto.DestinationId,
             };
             _db.TravelerRequests.Add(request);
             return _db.SaveChanges();
@@ -60,13 +61,16 @@ namespace fproject.Repository
             var records = (from t in _db.TravelerRequests
                            join ta in _db.Appointments on t.AppointmentId equals ta.AppointmentId
                            join tu in _db.Users on t.UserId equals tu.UserId
+                           join td in _db.Destinations on t.DestinationId equals td.DestinationId
                            where t.UserId == id
                            select new RequestJoin()
                            {
                                UserId = t.UserId,
                                Username = tu.Username,
                                Email = tu.Email,
-                               DepartureTime = ta.DepartureTime
+                               DepartureTime = ta.DepartureTime,
+                               To=td.To,
+                               From=td.From,
                            }).ToList();
             return records;
         }

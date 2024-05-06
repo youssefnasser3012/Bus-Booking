@@ -42,6 +42,8 @@ namespace fproject.Repository
             {
                 DepartureTime = appointementfromdto.DepartureTime,
                 MaxTravelers = appointementfromdto.MaxTravelers,
+                classe=appointementfromdto.classe,
+                price=appointementfromdto.price,
             };
             _db.Appointments.Add(appointement);
             return _db.SaveChanges();
@@ -52,6 +54,8 @@ namespace fproject.Repository
             var existing = _db.Appointments.Find(appointment.AppointmentId);
             existing.DepartureTime = appointment.DepartureTime;
             existing.MaxTravelers = appointment.MaxTravelers;
+            existing.classe = appointment.classe;
+            existing.price = appointment.price;
             _db.Appointments.Update(existing);
             return _db.SaveChanges();
            

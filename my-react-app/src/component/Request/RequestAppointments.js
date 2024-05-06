@@ -1,81 +1,113 @@
-import React, { useState } from 'react';
 import { PiMapPinLineDuotone } from "react-icons/pi";
+import { FcMoneyTransfer } from "react-icons/fc";
 import { FcClock } from "react-icons/fc";
-import {Table } from 'react-bootstrap';
+import { FcEditImage } from "react-icons/fc";
+import { Form, Table } from 'react-bootstrap';
+import { FaRoute } from "react-icons/fa6";
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
-import { FcMoneyTransfer } from "react-icons/fc";
-import './RA.css'
+import { PiUserSquareDuotone } from "react-icons/pi";
+import React, { useState, useEffect } from 'react';
+import { jwtDecode as jwt_decode } from 'jwt-decode';
+import axios from 'axios';
 
 
 
-const  RequestAppointments=()=>{
-    
+const RequestAppointments = () => {
+    const [requests, setRequests] = useState([]);
+    const token = localStorage.getItem('token');
+    const headers = {
+        Authorization:  `Bearer ${token}`,
+      };
+    const decodedToken = jwt_decode(token);
+    const userIdfromtoken = decodedToken.userId;
 
-    return(
-    <>
-<NavigationBar/> 
+    useEffect(() => {
+        const fetchRequests = async () => {
+            try {
+                const response = await axios.get('http://localhost:5270/api/Destination/GetWjoin'); // Update API endpoint
+                setRequests(response.data);
+            } catch (error) {
+                console.error('Error fetching requests:', error);
+            }
+        };
+        fetchRequests();
+    }, []);
 
-
-<div className="ubdate-routes p-5 ">
-<h3 className='text-center m-3 pb-5'> Request Appointments</h3>
-<div className="row justify-content-center pb-5">
-    <Table striped bordered hover size="sm" responsive="md">
-        <thead>
-            <tr>
-                
-               
-                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
-                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
-                <th><FcClock size="1.6rem" /> Date and Time</th>
-                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
-                <th><FcMoneyTransfer size="1.6rem" /> Price</th>
-                <th>Event</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-               
-
-             
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>cairo</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>luxor</div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>
-              <div>30 march </div>
-              <div>18:40</div>
-              </div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold" }}><select id="number"  className="select-number" >
-       
-        <option value={1}>1</option>
-        <option value={2}>2</option>
-        <option value={3}>3</option>
-        <option value={4}>4</option>
-        <option value={5}>5</option>
-        {/* Add more options as needed */}
-      </select></div></td>
-              <td><div className='mt-4' style={{fontWeight:"bold"}}>100LE</div></td>
-             
-            
-                <td>
-                <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2'>Request Ticket</button>{' '}
-                    
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    
-    </Table>
-</div>
-</div>
-
-</>
-
-)
-
-    
-    
-    
-    
+    const handleRequestTicket = async (request) => {
+        try {
+            const { destinationId, appointmentId } = request;
+            const requestBody = {
+                requestId: 0,
+                userId:15, 
+                appointmentId,
+                status: 'Pending',
+                destinationId,
+            };
+            const response = await axios.post('http://localhost:5270/api/TravellerRequest/Create', requestBody); // Update API endpoint
+            console.log('Request ticket response:', response.data);
+            // Handle success or display a success message
+        } catch (error) {
+            console.error('Error requesting ticket:', error);
+            // Handle error or display an error message
+        }
     };
-    export default RequestAppointments;
+
+    return (
+        <>
+            <NavigationBar />
+            <div className="update-routes p-5">
+                <h3 className='text-center m-3 pb-5'>Requests</h3>
+                <div className="row justify-content-center pb-5">
+                    <Table striped bordered hover size="sm" responsive="md">
+                        <thead>
+                            <tr>
+
+
+                                <th><PiMapPinLineDuotone size="1.4rem" />From</th>
+                                <th><PiMapPinLineDuotone size="1.4rem" />To</th>
+                                <th><FcClock size="1.6rem" /> Date and Time</th>
+                                <th><PiUsersThreeDuotone size="1.5rem" />class</th>
+                                <th><FcMoneyTransfer size="1.6rem" /> Price</th>
+                                <th>Event</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {requests.map(request => (
+                                <tr>
+                                    
+
+
+
+                                    <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.from}</div></td>
+                                    <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.to}</div></td>
+                                    <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.departureTime}
+
+                                    </div> </td>
+                                    <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.classe}</div></td>
+
+
+
+                                    <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.price}LE</div></td>
+
+                                    <td>
+                                        <div className='row  mt-3'>
+                                            <button onClick={() => handleRequestTicket(request)} className='btn btn-sm btn-success mx-auto row m-2'>Request Ticket</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+
+                    </Table>
+                </div>
+            </div>
+
+        </>
+
+    )
+
+
+};
+export default RequestAppointments;

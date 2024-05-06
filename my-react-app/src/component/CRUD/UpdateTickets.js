@@ -1,137 +1,114 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { PiMapPinLineDuotone } from "react-icons/pi";
-import { FcMoneyTransfer } from "react-icons/fc";
-import { FcClock } from "react-icons/fc";
-import { FcEditImage } from "react-icons/fc";
-import { Form,Table } from 'react-bootstrap';
-import { FaRoute } from "react-icons/fa6";
+import { Table, Form } from 'react-bootstrap';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import NavigationBar from '../navbar/NAvigationBar';
-import { PiUsersThreeDuotone } from "react-icons/pi";
-import { FcCalendar } from "react-icons/fc";
+const UpdateTickets = () => {
+    const [tickets, setTickets] = useState([]);
+    const [update, setUpdate] = useState([]);
+    const dateRefs = useRef([]);
+    const numofticketsRefs = useRef([]);
+    const ticketsPriceRefs = useRef([]);
+    const classesRefs = useRef([]);
 
-const UpdateTickets=()=>{
-   
- const toRef =useRef('');
-const fromRef=useRef('');
-   const UpdatedDateRef =useRef(''); 
-   const UpdatedTimeRef=useRef('');
-   const TicketsPriceRef=useRef('');
-   const NumoftravelersRef=useRef('');
-   const Numoftickets=useRef('');
-   const classesRef =useRef('');
- useEffect(()=>{
-
- console.log("render");
-
- },fromRef)
-
-   
-    const handleAdd = () => {
-        // Construct the object with the form data
-        const TicketsData = {
-        
-           'updated-tickets-from':fromRef.current.value,
-            'updated-tickets-to': toRef.current.value,
-            'updated-ticketPrice': TicketsPriceRef.current.value,
-
-            'updated-numoftickets':Numoftickets.current.value,
-            'updated-tickets-date':UpdatedDateRef.current.value,
-            'updated-tickets-time':UpdatedTimeRef.current.value,
-            'updated-tickets-classes':classesRef.current.value,
+    useEffect(() => {
+        const fetchTickets = async () => {
+            try {
+                const response = await axios.get('http://localhost:5270/api/Appointment');
+                setTickets(response.data);
+            } catch (error) {
+                console.error('Error fetching tickets:', error); // Log the error message
+            }
         };
-        // Store the form data in local storage
-        localStorage.setItem('ticketsdata', JSON.stringify(TicketsData));
 
-        // Clear the form fields after saving
-        clearForm();
+        fetchTickets();
+    }, []);
+
+    const handleUpdate = (ticketId, index) => {
+        const updatedTicket = {
+            "departureTime": dateRefs.current[index].value,
+            "maxTravelers": numofticketsRefs.current[index].value,
+            "classe": classesRefs.current[index].value,
+            "price": ticketsPriceRefs.current[index].value,
+            "appointmentId": ticketId
+        };
+
+        axios.put('http://localhost:5270/api/Appointment/Update', updatedTicket)
+            .then(response => {
+                console.log('Updated successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error updating ticket:', error.response.data); // Log the error message
+            });
     };
 
-    const handleDelete = () => {
-        // Clear the form data from local storage
-        localStorage.removeItem('ticketsdata');
-        // Clear the form fields after deletion
-        clearForm();
+    const handleDelete = async (appointmentId) => {
+        try {
+            const response = await axios.delete(`http://localhost:5270/api/Appointment/Delete/${appointmentId}`);
+            console.log('Deleted successfully:', response.data);
+            const updatedTickets = tickets.filter(ticket => ticket.appointmentId !== appointmentId);
+            setTickets(updatedTickets);
+        } catch (err) {
+            console.error('Error deleting ticket:', err.message); // Log the error message
+        }
     };
 
-    const clearForm = () => {
-    fromRef.current.value='';
-    toRef.current.value='';
-    TicketsPriceRef.current.value='';
-   
-    UpdatedDateRef.current.value='';
-    UpdatedTimeRef.current.value='';
-    classesRef.current.value='';
-    Numoftickets.current.value='';
-       
-        
-    };
+    return (
+        <>
+            <NavigationBar />
+            <div className="update-routes p-5">
+                <h3 className="text-center m-3 pb-5">Update Tickets</h3>
+                <div className="row justify-content-center pb-5">
+                    {tickets.map((ticket, index) => (
+                        <Table striped bordered hover size="sm" responsive="md" key={ticket.appointmentId}>
+                            <thead>
+                                <tr>
+                                    <th>Appointment ID</th>
+                                    <th>Date and Time</th>
+                                    <th>Ticket Price</th>
+                                    <th>Class</th>
+                                    <th>Number Of Tickets</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{ticket.appointmentId}</td>
+                                    <td>
+                                        <div className='row'> <input className='p-1 m-1' style={{ borderRadius: "8px" }} type="datetime-local" ref={(ref) => dateRefs.current[index] = ref} defaultValue={ticket.departureTime} /> </div>
+                                    </td>
+                                    <td>
+                                        <input className="form-control" type="number" ref={(ref) => ticketsPriceRefs.current[index] = ref} defaultValue={ticket.price} />
+                                    </td>
+                                    <td>
+                                        <Form.Select className="form-select" ref={(ref) => classesRefs.current[index] = ref} defaultValue={ticket.classe}>
+                                            <option>Select Class</option>
+                                            <option value="First Class">First Class</option>
+                                            <option value="Business Class">Business Class</option>
+                                            <option value="Primary Class">Primary Class</option>
+                                            <option value="Comfort Class">Comfort Class</option>
+                                        </Form.Select>
+                                    </td>
+                                    <td>
+                                        <input className="form-control" type="number" ref={(ref) => numofticketsRefs.current[index] = ref} defaultValue={ticket.maxTravelers} />
+                                    </td>
+                                    <td>
+                                        <div className="d-flex justify-content-center">
+                                            <button className="btn btn-warning me-2" onClick={() => handleUpdate(ticket.appointmentId, index)}>Update</button>
+                                            <button className="btn btn-danger" onClick={() => handleDelete(ticket.appointmentId)}>Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </Table>
+                    ))}
+                    <Link to="/addappointment">
+                        <button className="btn btn-success">Add Appointments</button>
+                    </Link>
+                </div>
+            </div>
+        </>
+    );
+};
 
-    return(
-    <>
-<NavigationBar/> 
-<div className="ubdate-routes p-5 ">
-<h3 className='text-center m-3 pb-5'>Update Tickets</h3>
-<div className="row justify-content-center pb-5">
-    <Table striped bordered hover size="sm" responsive="md">
-        <thead>
-            <tr>
-                <th><FaRoute size="1.4rem" /></th>
-                {/* <th><PiMapPinLineDuotone size="1.4rem" />From</th>
-                <th><PiMapPinLineDuotone size="1.4rem" />To</th> */}
-                <th><FcCalendar size="1.6rem" /> Date and Time</th>
-                <th><FcMoneyTransfer size="1.6rem" /> Ticket Price</th>
-                <th>Class</th>
-               
-                <th><PiUsersThreeDuotone size="1.5rem" /> Number Of Tickets</th>
-                <th>Event</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><div className=' mt-5'>1</div></td>
-                {/* <td><input type="text" ref={(ref)=>fromRef.current=ref}  placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>
-                <td><input type="text" ref={(ref)=>toRef.current=ref} placeholder="Enter City" className="form-control form-control-sm no-padding no-margin  mt-5" /></td> */}
-                <td>   
-                <div>
-
-                <label>Date:</label>{' '}
-               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}}type="date" ref={(ref)=>UpdatedDateRef.current=ref}/> </div>
-              {/* <label>Time:</label>
-               <div className='row'> <input className='p-1 m-1' style={{borderRadius:"8px"}} type="time"  ref={(ref)=>UpdatedTimeRef.current=ref}/></div> */}
-              </div>
-              </td>
-                <td><input  type="number" ref={(ref)=>TicketsPriceRef.current=ref} className="no-arrows form-control-sm no-padding no-margin mt-5" /></td>
-                <td> <div>
-                
-                <Form.Select className=' mt-5' style={{  borderRadius: "20px" }} ref={(ref)=>classesRef.current=ref}>
-                    <option>Select City</option>
-                    <option value="First Class">First Class</option>
-                    <option value="Business Class">Business Class</option>
-                    <option value="primary class">Primary Class</option>
-                    <option value="Comfort class">Comfort Class</option>
-                </Form.Select>
-            </div></td>
-           
-            <td><input type="number" ref={(ref)=>Numoftickets.current=ref} placeholder='Enter Num Of Tickets' className="no-arrows form-control-sm no-padding no-margin  mt-5" /></td>
-                <td>
-                <div className='row  mt-3'>
-                    <button className='btn btn-sm btn-success mx-auto row m-2' onClick={handleAdd}> Add </button>{' '}
-                    <button className='btn btn-sm btn-danger mx-auto row' onClick={handleDelete}>Delete</button>{'  '}
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </Table>
-</div>
-</div>
-
-</>
-
-)
-
-    
-    
-    
-    
-    };
-    export default UpdateTickets;
+export default UpdateTickets;

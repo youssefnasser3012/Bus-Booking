@@ -1,5 +1,6 @@
 ﻿using fproject.Dtos;
 using fproject.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,19 +17,22 @@ namespace fproject.Controllers
         }
         private readonly ITravelerRequest _repo;
         [HttpGet]
-        [Route("")]
+        [Route("GetAll")]
+        
         public IActionResult GetRequests()
         {
             return Ok(_repo.GetRequests());
         }
         [HttpGet]
-        [Route("{id}")]
+        
+      
         public IActionResult GetRequest(int id)
         {
             return Ok(_repo.GetRequest(id));
         }
         [HttpPost]
-        [Route("")]
+        [Route("Create")]
+        
         public IActionResult CreateRequest(TravelerRequestDto requestfromdto)
         {
             _repo.CreateRequest(requestfromdto);
@@ -37,6 +41,7 @@ namespace fproject.Controllers
 
         [HttpPut]
         [Route("Accept")]
+        
         public IActionResult AcceptRequest(AcceptDeclineDto request)
         {
             return Ok(_repo.Accept(request));
@@ -44,12 +49,14 @@ namespace fproject.Controllers
 
         [HttpPut]
         [Route("Decline")]
+      
         public IActionResult DeclineRequest(AcceptDeclineDto request)
         {
             return Ok(_repo.DeclineRequest(request));
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("Delete/{id}")]
+        
         public IActionResult DeleteRequest(int id)
         {
             return Ok(_repo.deleteRequest(id));

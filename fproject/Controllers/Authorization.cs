@@ -53,36 +53,7 @@ namespace fproject.Controllers
             return Ok();
 
         }
-        /* public async Task<IActionResult> Signup(SignupDto model)
-         {
-             if (!ModelState.IsValid)
-             {
-                 return BadRequest(ModelState);
-             }
-
-             // Check if the email is already registered
-             if (await _context.Users.AnyAsync(u => u.Email == model.Email))
-             {
-                 return Conflict(new { message = "Email already exists." });
-             }
-
-             // Hash the password
-             string hashedPassword = BCryptNet.HashPassword(model.Password);
-
-             // Create a new user
-             var user = new User
-             {
-                 Username = model.Username,
-                 Email = model.Email,
-                 PasswordHash = hashedPassword,
-                 Role = "User" // Set default role if needed
-             };
-
-             _context.Users.Add(user);
-             await _context.SaveChangesAsync();
-
-             return Ok(new { message = "User registered successfully." });
-         }*/
+        
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginDto userForLoginDto)
@@ -96,7 +67,8 @@ namespace fproject.Controllers
 
             var claims = new[]
             {
-                
+                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.UserId.ToString()),
+
                 new Claim(ClaimTypes.Email, userFromRepo.Email),
                 new Claim(ClaimTypes.Name, userFromRepo.Username),
                 new Claim(ClaimTypes.Role, userFromRepo.Role),

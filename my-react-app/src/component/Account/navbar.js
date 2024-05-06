@@ -16,7 +16,7 @@ return (
       
          <Nav className="nav_links ms-auto pl-3">
       
-      <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
+      {/* <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link> */}
       
       </Nav>
     

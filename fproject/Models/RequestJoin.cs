@@ -1,4 +1,6 @@
-﻿namespace fproject.Models
+﻿using Humanizer;
+
+namespace fproject.Models
 {
     public class RequestJoin
     {
@@ -6,7 +8,8 @@
         public string Username { get; set; }
         public string Email { get; set; }
         public DateTime DepartureTime { get; set; }
-
+        public string To { get; set; }
+        public string From { get; set; }
 
     }
 }

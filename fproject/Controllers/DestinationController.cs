@@ -1,5 +1,6 @@
 ﻿using fproject.Dtos;
 using fproject.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,41 +16,53 @@ namespace fproject.Controllers
         }
         private readonly IDestinationRepo _repo;
         [HttpGet]
-        [Route("")]
+        [Route("GetAll")]
+        
         public IActionResult GetDestinations()
         {
             return Ok(_repo.GetDestinations());
         }
         [HttpGet]
-        [Route("{id}")]
+        [Route("GetOne/{id}")]
+       
         public IActionResult GetDestination(int id)
         {
             return Ok(_repo.GetDestionation(id));
         }
         [HttpPost]
-        [Route("")]
+        [Route("Create")]
+       
         public IActionResult InsertDestination(DestinationDto destinationfromdto)
         {
             _repo.insertDestiantion(destinationfromdto);
             return Ok("success");
         }
         [HttpPut]
-        [Route("")]
+        [Route("Update")]
+       
         public IActionResult PutDestination(DestinationDto destination)
         {
             return Ok(_repo.updateDestination(destination));
         }
         [HttpDelete]
-        [Route("{id}")]
+        [Route("Delete/{id}")]
+        
         public IActionResult DeleteDestination(int id)
         {
             return Ok(_repo.deleteDestination(id));
         }
         [HttpGet]
-        [Route("join")]
+        [Route("GetWjoin")]
+        
         public IActionResult GetDestination2()
         {
             return Ok(_repo.GetDestinations2());
+        }
+        [HttpGet]
+        [Route("Filter")]
+        public IActionResult GetDestinationsFiltered(string fromLocation, string to)
+        {
+            return Ok(_repo.GetDestinationsFiltered(fromLocation, to));
         }
     }    
 }
