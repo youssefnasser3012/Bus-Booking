@@ -4,7 +4,6 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import './History.css'
 import PendingReqest from '../Request/PendingReqest';
-import ApprovedRequest from '../Request/ApprovedRequest';
 
 
 const History=()=>{

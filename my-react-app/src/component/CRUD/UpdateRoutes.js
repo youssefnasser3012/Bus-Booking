@@ -11,6 +11,8 @@ const UpdateRoutes = () => {
     const fromRefs = useRef({});
     const toRefs = useRef({});
     const [loading, setLoading] = useState(true);
+    const [destid, setDestid] = useState(true);
+
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -32,7 +34,7 @@ const UpdateRoutes = () => {
             from: fromRefs.current.value,
             to: toRefs.current.value,
             appointmentId: route.appointmentId,
-            // "destinationId": 0,
+            destinationId: route.destinationId,
         };
 
         try {
@@ -46,12 +48,12 @@ const UpdateRoutes = () => {
         }
     };
 
-    const handleDelete = async (id) => {
+    const handleDelete = async (destinationId) => {
         try {
-            const response = await axios.delete(`http://localhost:5270/api/Destination/Delete/${id}`);
+            const response = await axios.delete(`http://localhost:5270/api/Destination/Delete/${destinationId}`);
             console.log('Deleted successfully:', response.data);
             // Refresh routes after deletion
-            const updatedRoutes = routes.filter(route => route.appointmentId !== id);
+            const updatedRoutes = routes.filter(route => route.destinationId !== destinationId);
             setRoutes(updatedRoutes);
         } catch (error) {
             console.error('Error deleting route:', error);
@@ -86,7 +88,7 @@ const UpdateRoutes = () => {
                                         <td><input type="text" defaultValue={route.to}  ref={(ref) => toRefs.current= ref} className="form-control form-control-sm no-padding no-margin" /></td>
                                         <td>
                                             <button className='btn btn-sm btn-success mx-auto' onClick={() => handleUpdate(route)}>Update</button>{' '}
-                                            <button className='btn btn-sm btn-danger mx-auto' onClick={() => handleDelete(route.appointmentId)}>Delete</button>{' '}
+                                            <button className='btn btn-sm btn-danger mx-auto' onClick={() => handleDelete(route.destinationId)}>Delete</button>{' '}
                                         </td>
                                     </tr>
                                 ))}

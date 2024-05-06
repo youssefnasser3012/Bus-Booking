@@ -12,18 +12,18 @@ const Tickets = () => {
 
 
 
-    const  UserRole= JSON.parse(localStorage.getItem('UserRole'));
+    // const  UserRole= JSON.parse(localStorage.getItem('UserRole'));
     
-    const signin = JSON.parse(localStorage.getItem('signin'));
+    // const signin = JSON.parse(localStorage.getItem('signin'));
   
-    const issignIn  = signin !== null;
+    // const issignIn  = signin !== null;
 
     // const signup = JSON.parse(localStorage.getItem('signup'));
   
     // const issignup = signup !== null;
 
   
-    const Admin = (issignIn)  && (signin.email ===UserRole.email ) && (signin.password ===UserRole.password)  ? true:false;
+    // const Admin = (issignIn)  && (signin.email ===UserRole.email ) && (signin.password ===UserRole.password)  ? true:false;
     
    
    
@@ -70,7 +70,7 @@ const Tickets = () => {
     const handleDateChange = (e) => {
         const date = e.target.value;
         setSelectedDate(date);
-        localStorage.setItem("selectedDate", date);
+        // localStorage.setItem("selectedDate", date);
     }
 
     useEffect(() => {
@@ -125,6 +125,7 @@ const Tickets = () => {
                                         </Form.Select>
                                     </div>
                                 </div>
+                               
                                 <div style={{ marginTop: '30px' }} className='pt-4 pb-4'>
                                     <FcConferenceCall size="2.5rem" />
                                     <div style={{ display: 'inline-block', backgroundColor: " #F4A460", border: '2px solid #F4A460', borderRadius: '8px', padding: "1px", marginLeft: "20px" }}>

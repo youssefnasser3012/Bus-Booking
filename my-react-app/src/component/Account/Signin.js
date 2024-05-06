@@ -2,41 +2,31 @@ import React, { useState,useEffect } from 'react';
 import './Signin.css';
 import './navbar.css';
 import Navbar from './navbar';
-import { useNavigate } from 'react-router-dom'; // Updated import
+import { useNavigate } from 'react-router-dom'; 
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+ import {jwtDecode} from 'jwt-decode';
 import Alert from 'react-bootstrap/Alert';
-
-
 
 const getRoleFromToken = (token) => {
   if (!token) {
-    // Token is missing, return null or handle as needed
+    
     return null;
   }
 
   try {
     const decodedToken = jwtDecode(token);
-  //  your JWT payload contains a field named 'role'
+
     
-    return decodedToken;
+    return decodedToken.role;
   } catch (error) {
-    // JWT decoding failed, handle the error (e.g., log or return null)
-    console.error('Error decoding JWT:', error);
+   
     return null;
   }
 };
-// Usage example:
-/*const token = localStorage.getItem('token');
-const role = getRoleFromToken(token);
-console.log('User role:', role);*/
 
-export const removeAuthToken = () => {
-  if (localStorage.getItem("token")) {
-    localStorage.removeItem("token");
-  }
-};
+
+
 
 const Signin = () => {
     const [email, setEmail] = useState('');
@@ -64,19 +54,30 @@ const Signin = () => {
         try {
             const response = await axios.post('http://localhost:5270/api/auth/login', formData);
             console.log('Sign-up successful:', response.data);
+            const token = response.data.token;
             clearForm();
             navigate('/home');
-            const token = response.data.token;
+            const decodedToken = jwtDecode(token);
+           
+           console.log('data',decodedToken);
+           console.log(typeof(decode))
+           
+           const userId = decodedToken.nameid;
+
+           console.log('the id is ',userId );
+           localStorage.setItem('userId', userId);
 
       // Set the token in local storage
     
       localStorage.setItem('token', token);
       const userRole = getRoleFromToken(token);
+      localStorage.setItem('userRole', userRole);
+
 
 console.log('User role:', userRole.role);
 
         } catch (error) {
-            console.error(error.response.data);
+          
             setError(error.response.data);
             setShowAlert(true);
         }
@@ -96,6 +97,7 @@ console.log('User role:', userRole.role);
             return () => clearTimeout(timer);
         }
     }, [showAlert]);
+   
 
     return (
         <>

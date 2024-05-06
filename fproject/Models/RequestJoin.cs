@@ -11,5 +11,8 @@ namespace fproject.Models
         public string To { get; set; }
         public string From { get; set; }
 
+        public string Status { get; set; }
+
+
     }
 }

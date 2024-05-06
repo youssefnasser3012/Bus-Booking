@@ -17,11 +17,10 @@ const RequestAppointments = () => {
     const [requests, setRequests] = useState([]);
     const token = localStorage.getItem('token');
     const headers = {
-        Authorization:  `Bearer ${token}`,
+        Authorization:  `Bearer ${token}`    ,
       };
-    const decodedToken = jwt_decode(token);
-    const userIdfromtoken = decodedToken.userId;
-
+      const userId = localStorage.getItem('userId');
+      const userrole = localStorage.getItem('userole');
     useEffect(() => {
         const fetchRequests = async () => {
             try {
@@ -39,7 +38,7 @@ const RequestAppointments = () => {
             const { destinationId, appointmentId } = request;
             const requestBody = {
                 requestId: 0,
-                userId:15, 
+                userId:userId, 
                 appointmentId,
                 status: 'Pending',
                 destinationId,
@@ -57,18 +56,20 @@ const RequestAppointments = () => {
         <>
             <NavigationBar />
             <div className="update-routes p-5">
-                <h3 className='text-center m-3 pb-5'>Requests</h3>
+                <h3 className='text-center m-3 pb-5'>All Aailable Trips</h3>
                 <div className="row justify-content-center pb-5">
                     <Table striped bordered hover size="sm" responsive="md">
                         <thead>
                             <tr>
 
-
+                            
                                 <th><PiMapPinLineDuotone size="1.4rem" />From</th>
                                 <th><PiMapPinLineDuotone size="1.4rem" />To</th>
                                 <th><FcClock size="1.6rem" /> Date and Time</th>
                                 <th><PiUsersThreeDuotone size="1.5rem" />class</th>
+                                
                                 <th><FcMoneyTransfer size="1.6rem" /> Price</th>
+                              
                                 <th>Event</th>
                             </tr>
                         </thead>
@@ -86,10 +87,14 @@ const RequestAppointments = () => {
 
                                     </div> </td>
                                     <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.classe}</div></td>
+                                   
+                                    
+
 
 
 
                                     <td><div className='mt-4' style={{ fontWeight: "bold" }}>{request.price}LE</div></td>
+                                    
 
                                     <td>
                                         <div className='row  mt-3'>
