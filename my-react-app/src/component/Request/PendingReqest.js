@@ -28,6 +28,7 @@ const PendingRequests = () => {
         <div className="update-routes p-5">
             <h3 className='text-center m-3 pb-5'>Pending Appointments</h3>
             <div className="row justify-content-center pb-5">
+            {appointments.map(appointment => (
                 <Table striped bordered hover size="sm" responsive="md">
                     <thead>
                         <tr>
@@ -44,7 +45,7 @@ const PendingRequests = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map(appointment => (
+                       
                             <tr key={appointment.appointmentId}>
                                  <td>{appointment.username}</td>
                                 <td>{appointment.from}</td>
@@ -58,9 +59,10 @@ const PendingRequests = () => {
                                     </div>
                                 </td>
                             </tr>
-                        ))}
+                      
                     </tbody>
                 </Table>
+            ))}
             </div>
         </div>
     );

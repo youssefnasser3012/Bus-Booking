@@ -7,12 +7,9 @@ import { FaRoute } from "react-icons/fa6";
 import NavigationBar from '../navbar/NAvigationBar';
 import { PiUsersThreeDuotone } from "react-icons/pi";
 import { PiUserSquareDuotone } from "react-icons/pi";
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import jwt_decode from 'jwt-decode';
 
 
 const Request = () => {
@@ -22,6 +19,7 @@ const Request = () => {
         const fetchRequests = async () => {
             try {
                 const response = await axios.get('http://localhost:5270/api/TravellerRequest/GetAll'); 
+                console.log('API Response:', response.data); // Log the response data
                 setRequests(response.data);
             } catch (error) {
                 console.error('Error fetching requests:', error);
@@ -29,16 +27,15 @@ const Request = () => {
         };
         fetchRequests();
     }, []);
+    
   
   
     const handleAccept = async (requestId) => {
         try {
-            await axios.put('http://localhost:5270/api/TravellerRequest/Accept/', { requestId });
-            // Update the requests state after accepting the request
-            const updatedRequests = requests.map(request =>
-                request.requestId === requestId ? { ...request, status: 'Accepted' } : request
-            );
-            setRequests(updatedRequests);
+            await axios.put('http://localhost:5270/api/TravellerRequest/Accept', { requestId });
+            // Fetch the updated requests after accepting the request
+            const response = await axios.get('http://localhost:5270/api/TravellerRequest/GetAll');
+            setRequests(response.data);
         } catch (error) {
             console.error('Error accepting request:', error);
         }
@@ -46,16 +43,15 @@ const Request = () => {
     
     const handleDecline = async (requestId) => {
         try {
-            await axios.put('http://localhost:5270/api/TravellerRequest/Decline/', { requestId });
-            // Update the requests state after declining the request
-            const updatedRequests = requests.map(request =>
-                request.requestId === requestId ? { ...request, status: 'Declined' } : request
-            );
-            setRequests(updatedRequests);
+            await axios.put('http://localhost:5270/api/TravellerRequest/Decline', { requestId });
+            // Fetch the updated requests after declining the request
+            const response = await axios.get('http://localhost:5270/api/TravellerRequest/GetAll');
+            setRequests(response.data);
         } catch (error) {
             console.error('Error declining request:', error);
         }
     };
+    
     
     
 
@@ -65,33 +61,38 @@ const Request = () => {
             <div className="update-routes p-5">
                 <h3 className='text-center m-3 pb-5'>Requests</h3>
                 <div className="row justify-content-center pb-5">
+                {requests.map(request => (
                     <table className="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>requestid</th>
-                                <th>userid</th>
-                                <th>appointementid</th>
-                                <th>status</th>
-                                <th>destinationid</th>
+                                <th>User Id</th>
+                                <th>User Name</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Time</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {requests.map(request => (
-                                <tr >
-                                    <td>{request.requestId}</td>
+                           
+                                <tr key={request.userId}>
                                     <td>{request.userId}</td>
-                                    <td>{request.appointmentId}</td>
-                                    <td>{request.status}</td>
-                                    <td>{request.destinationId}</td>
+                                    <td>{request.username}</td>
+                                    <td>{request.from}</td>
+                                    <td>{request.to}</td>
+                                    <td>{request.departureTime}</td>
                                     <td>
-    <button className='btn btn-sm btn-success mx-auto m-2' onClick={() => handleAccept(request.requestId)}>Accept</button>
-    <button className='btn btn-sm btn-danger mx-auto' onClick={() => handleDecline(request.requestId)}>Decline</button>
+                                    <div className="d-flex justify-content-center">
+    <button className='btn btn-success m-1' onClick={() => handleAccept(request.userId)}>Accept</button> {' '}
+    <button className='btn  btn-danger m-1' onClick={() => handleDecline(request.userId)}>Decline</button>{' '}
+    </div>
+    
 </td>
                                 </tr>
-                            ))}
+                         
                         </tbody>
                     </table>
+                ))}
                 </div>
             </div>
         </>

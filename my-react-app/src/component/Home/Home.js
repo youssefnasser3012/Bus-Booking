@@ -198,7 +198,7 @@ return (
 
     
 ))}
-{ role=="User"? null :<Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
+{ role!=="Admin"? null :<Card style={{ width: '18rem', marginLeft:'5px',marginBottom:'40px' }}>
 <Card.Body>
 
 <Link to="/updateroutes" style={{color:"black"}} ><IoMdAddCircle size="3rem" className="Add_Routes" /></Link>
@@ -280,7 +280,7 @@ return (
 </div>
 </div>
 
-{UserRole==="User"?<Card className='mb-3' style={{backgroundColor:"#f9f9f9"}}>
+{UserRole!=="Admin"?<Card className='mb-3' style={{backgroundColor:"#f9f9f9"}}>
 <Card.Body>
                           <div  style={{marginLeft:"190px"}}>
                          

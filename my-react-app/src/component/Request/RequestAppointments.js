@@ -17,7 +17,7 @@ const RequestAppointments = () => {
     const [requests, setRequests] = useState([]);
     const token = localStorage.getItem('token');
     const headers = {
-        Authorization:  `Bearer ${token}`    ,
+        Authorization: `Bearer ${token}`,
       };
       const userId = localStorage.getItem('userId');
       const userrole = localStorage.getItem('userole');
@@ -56,7 +56,7 @@ const RequestAppointments = () => {
         <>
             <NavigationBar />
             <div className="update-routes p-5">
-                <h3 className='text-center m-3 pb-5'>All Aailable Trips</h3>
+                <h3 className='text-center m-3 pb-5'>All Aavilable Trips</h3>
                 <div className="row justify-content-center pb-5">
                     <Table striped bordered hover size="sm" responsive="md">
                         <thead>

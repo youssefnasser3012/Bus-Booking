@@ -42,7 +42,7 @@ return (
 <Navbar.Collapse  className="collapse_color" id="responsive-navbar-nav">
     
     <Nav className="nav_links ms-auto pl-3">
-    <Link to="/" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
+    <Link to="/home" style={{textDecoration:'none'}}> <Nav.Item href="/home">Home</Nav.Item></Link>
     <Link to="/tickets"  style={{textDecoration:'none'}}><Nav.Item href="/tickets">Tickets</Nav.Item></Link>
     <Link to="/requestappointments" style={{textDecoration:'none'}}><Nav.Item href="/requestappointments">Request Tickets</Nav.Item></Link>
     <Link to="/history" style={{textDecoration:'none'}}><Nav.Item href="/history">History</Nav.Item></Link>
@@ -52,14 +52,7 @@ return (
     </Nav>
  
     <div>
-    {islogedIn  ? (<Link to="/#" style={{textDecoration:'none'}}><Button onClick={handelLogOut} variant="outline-danger" href="/logout">Logout</Button></Link>) : 
-    (
-      <div>
-          <Link to="/signin" style={{textDecoration:'none'}}><Button className="m-2" variant="outline-success" href="/signin">Sign In</Button></Link>
-          {'   '}
-          <Link to="/signup" style={{textDecoration:'none'}}><Button variant="outline-danger" href="/signup">Sign Up</Button></Link>
-      </div>
-    )}
+    
 </div>
 </Navbar.Collapse>
 </Container>

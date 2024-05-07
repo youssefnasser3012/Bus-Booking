@@ -94,7 +94,7 @@ const SideBar = () => {
                     </div>
                 </div>
 
-                <div className='col-3' style={{ marginTop: "5%",marginBottom:"5%" }}>
+                <div className='col-3' style={{marginBottom:"5%" }}>
                     <div className="row">
                         {book ? (
                             <Card style={{ marginTop: "15%", boxShadow: "1px 1px 2px 2px #d9d9d9", border: "none" }}>

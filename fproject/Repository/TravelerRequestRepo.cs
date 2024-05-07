@@ -76,9 +76,23 @@ namespace fproject.Repository
             return records;
         }
 
-        public List<TravelerRequest> GetRequests()
+        public List<RequestJoin> GetRequests()
         {
-            return _db.TravelerRequests.ToList();
+            var records = (from t in _db.TravelerRequests
+                           join ta in _db.Appointments on t.AppointmentId equals ta.AppointmentId
+                           join tu in _db.Users on t.UserId equals tu.UserId
+                           join td in _db.Destinations on t.DestinationId equals td.DestinationId
+                           select new RequestJoin()
+                           {
+                               UserId = t.UserId,
+                               Username = tu.Username,
+                               Email = tu.Email,
+                               DepartureTime = ta.DepartureTime,
+                               To = td.To,
+                               From = td.From,
+                               Status = t.Status
+                           }).ToList();
+            return records;
         }
 
         public int updateRequest(TravelerRequestDto request)

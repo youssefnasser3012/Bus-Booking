@@ -18,7 +18,9 @@ function NavigationBar() {
     const handelLogOut = () => {
         if (UserRole) {
             localStorage.removeItem('token');
-            window.location.reload(); // Refresh the page after logout
+         
+            window.location.reload(); 
+            navigate('/signin')
         }
     };
     

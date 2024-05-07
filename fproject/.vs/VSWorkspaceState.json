@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Models"
+    "\\Models",
+    "\\Repository"
   ],
   "SelectedNode": "\\fproject.sln",
   "PreviewInSolutionExplorer": false

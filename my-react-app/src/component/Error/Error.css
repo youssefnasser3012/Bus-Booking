@@ -1,0 +1,14 @@
+.error-container {
+  text-align: center;
+}
+
+.error-image {
+  width: 80%; /* Adjust as needed */
+  height: auto; /* Maintain aspect ratio */
+  
+}
+
+.error-text {
+  font-size: 18px;
+  color: #ff0000; /* Red color for error message, change as needed */
+}

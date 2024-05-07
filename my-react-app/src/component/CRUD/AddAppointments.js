@@ -40,7 +40,7 @@ const fromRef=useRef('');
             "maxTravelers": Numoftickets.current.value,
             "classe": classesRef.current.value,
             "price": TicketsPriceRef.current.value,
-            "appointmentId":AppointmentIdRef.current.value
+            "appointmentId":"0"
 
 
             };
@@ -95,7 +95,7 @@ const fromRef=useRef('');
     // UpdatedTimeRef.current.value='';
     classesRef.current.value='';
     Numoftickets.current.value='';
-    AppointmentIdRef.current.value='';
+    
        
         
     };
@@ -112,7 +112,7 @@ const fromRef=useRef('');
                 <th><FaRoute size="1.4rem" /></th>
                 {/* <th><PiMapPinLineDuotone size="1.4rem" />From</th>
                 <th><PiMapPinLineDuotone size="1.4rem" />To</th> */}
-                <th><FcCalendar size="1.6rem" /> Appointment ID</th>
+
                 <th><FcCalendar size="1.6rem" /> Date and Time</th>
                 <th><FcMoneyTransfer size="1.6rem" /> Ticket Price</th>
                 <th>Class</th>
@@ -126,7 +126,7 @@ const fromRef=useRef('');
 
                 <td><div className=' mt-5'>1</div></td>
                 
-                <td> <td><input  type="number" ref={(ref)=>AppointmentIdRef.current=ref} className="no-arrows form-control-sm no-padding no-margin mt-4" /></td></td>
+               
                 
                 
                 {/* <td><input type="text" ref={(ref)=>fromRef.current=ref}  placeholder="Enter City" className="form-control form-control-sm no-margin  mt-5" /></td>

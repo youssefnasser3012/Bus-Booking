@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigationBar from '../navbar/NAvigationBar';
 import './Create.css';
 import { Table } from 'react-bootstrap';
@@ -8,11 +8,7 @@ import { Link } from 'react-router-dom';
 
 const UpdateRoutes = () => {
     const [routes, setRoutes] = useState([]);
-    const fromRefs = useRef({});
-    const toRefs = useRef({});
     const [loading, setLoading] = useState(true);
-    const [destid, setDestid] = useState(true);
-
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -29,10 +25,10 @@ const UpdateRoutes = () => {
         fetchRoutes();
     }, []);
 
-    const handleUpdate = async (route) => {
+    const handleUpdate = async (route, index) => {
         const updatedRoute = {
-            from: fromRefs.current.value,
-            to: toRefs.current.value,
+            from: route.from,
+            to: route.to,
             appointmentId: route.appointmentId,
             destinationId: route.destinationId,
         };
@@ -40,9 +36,12 @@ const UpdateRoutes = () => {
         try {
             const response = await axios.put('http://localhost:5270/api/Destination/Update', updatedRoute);
             console.log('Updated successfully:', response.data);
-            // Refresh routes after update
-            const updatedRoutes = routes.map(r => r.appointmentId === route.appointmentId ? response.data : r);
-            setRoutes(updatedRoutes);
+            // Update the specific route in the state without changing its position
+            setRoutes(prevRoutes => {
+                const updatedRoutes = [...prevRoutes];
+                updatedRoutes[index] = response.data;
+                return updatedRoutes;
+            });
         } catch (error) {
             console.error('Error updating route:', error);
         }
@@ -52,12 +51,17 @@ const UpdateRoutes = () => {
         try {
             const response = await axios.delete(`http://localhost:5270/api/Destination/Delete/${destinationId}`);
             console.log('Deleted successfully:', response.data);
-            // Refresh routes after deletion
-            const updatedRoutes = routes.filter(route => route.destinationId !== destinationId);
-            setRoutes(updatedRoutes);
+            // Remove the deleted route from the state
+            setRoutes(prevRoutes => prevRoutes.filter(route => route.destinationId !== destinationId));
         } catch (error) {
             console.error('Error deleting route:', error);
         }
+    };
+
+    const handleInputChange = (e, index, fieldName) => {
+        const updatedRoutes = [...routes];
+        updatedRoutes[index][fieldName] = e.target.value;
+        setRoutes(updatedRoutes);
     };
 
     if (loading) {
@@ -81,14 +85,14 @@ const UpdateRoutes = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {routes.map(route => (
-                                    <tr key={route.appointmentId}>
+                                {routes.map((route, index) => (
+                                    <tr key={route.destinationId}>
                                         <td>{route.appointmentId}</td>
-                                        <td><input type="text" defaultValue={route.from} ref={(ref) => fromRefs.current= ref} className="form-control form-control-sm no-margin" /></td>
-                                        <td><input type="text" defaultValue={route.to}  ref={(ref) => toRefs.current= ref} className="form-control form-control-sm no-padding no-margin" /></td>
+                                        <td><input type="text" value={route.from} onChange={(e) => handleInputChange(e, index, 'from')} className="form-control form-control-sm no-margin" /></td>
+                                        <td><input type="text" value={route.to} onChange={(e) => handleInputChange(e, index, 'to')} className="form-control form-control-sm no-padding no-margin" /></td>
                                         <td>
-                                            <button className='btn btn-sm btn-success mx-auto' onClick={() => handleUpdate(route)}>Update</button>{' '}
-                                            <button className='btn btn-sm btn-danger mx-auto' onClick={() => handleDelete(route.destinationId)}>Delete</button>{' '}
+                                            <button className='btn btn-sm btn-warning mx-auto' onClick={() => handleUpdate(route, index)}>Update</button>{' '}
+                                            {/* <button className='btn btn-sm btn-danger mx-auto' onClick={() => handleDelete(route.destinationId)}>Delete</button>{' '} */}
                                         </td>
                                     </tr>
                                 ))}

@@ -5,7 +5,7 @@ namespace fproject.Repository
 {
     public interface ITravelerRequest
     {
-        public List<TravelerRequest> GetRequests();
+        public List<RequestJoin> GetRequests();
         public List<RequestJoin> GetRequest(int id);
         public int CreateRequest(TravelerRequestDto requestfromdto);
         public int updateRequest(TravelerRequestDto request);
