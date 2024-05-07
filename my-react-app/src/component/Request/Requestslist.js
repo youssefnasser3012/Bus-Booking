@@ -75,7 +75,7 @@ const Request = () => {
                         </thead>
                         <tbody>
                            
-                                <tr key={request.userId}>
+                                <tr key={request.requestId}>
                                     <td>{request.userId}</td>
                                     <td>{request.username}</td>
                                     <td>{request.from}</td>
@@ -83,8 +83,8 @@ const Request = () => {
                                     <td>{request.departureTime}</td>
                                     <td>
                                     <div className="d-flex justify-content-center">
-    <button className='btn btn-success m-1' onClick={() => handleAccept(request.userId)}>Accept</button> {' '}
-    <button className='btn  btn-danger m-1' onClick={() => handleDecline(request.userId)}>Decline</button>{' '}
+    <button className='btn btn-success m-1' onClick={() => handleAccept(request.requestId)}>Accept</button> {' '}
+    <button className='btn  btn-danger m-1' onClick={() => handleDecline(request.requestId)}>Decline</button>{' '}
     </div>
     
 </td>

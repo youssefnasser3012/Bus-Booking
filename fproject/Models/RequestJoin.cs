@@ -13,6 +13,8 @@ namespace fproject.Models
 
         public string Status { get; set; }
 
+        public int RequestId { get; set; }
+
 
     }
 }

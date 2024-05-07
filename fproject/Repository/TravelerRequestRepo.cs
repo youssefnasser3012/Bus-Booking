@@ -90,7 +90,8 @@ namespace fproject.Repository
                                DepartureTime = ta.DepartureTime,
                                To = td.To,
                                From = td.From,
-                               Status = t.Status
+                               Status = t.Status,
+                               RequestId = t.RequestId
                            }).ToList();
             return records;
         }
